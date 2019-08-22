@@ -26,10 +26,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void update(UserDTO user) {
+	public void update(UserDTO updateUser) {
 		// TODO 自動生成されたメソッド・スタブ
 		
-		 userMapper.update(user);
+		 userMapper.update(updateUser);
 	}
 
 	@Override
@@ -39,10 +39,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void delete(UserDTO user) {
+	public void delete(int u_no) {
 		
-		userMapper.delete(user);
+		userMapper.delete(u_no);
 		
+	}
+
+	@Override
+	public void updatePass(LoginInfoDTO userPass) {
+		
+		userMapper.updatePass(userPass);
 	}
 
 }

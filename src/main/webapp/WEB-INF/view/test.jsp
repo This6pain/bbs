@@ -9,6 +9,7 @@
 		<title>Insert title here</title>
 		<%@ include file="../include/bootstrap.jsp" %>
 		<%@ include file="../include/modals.jsp" %>
+		<%@ include file="../include/bbs.jsp" %>
 		
 	</head>
 	<body>

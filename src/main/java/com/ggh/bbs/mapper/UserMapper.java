@@ -16,9 +16,11 @@ public interface UserMapper {
 	
 	public UserDTO login(LoginInfoDTO loginInfo);
 	
-	public void delete(UserDTO user);
+	public void delete(int u_no);
 
-	public void update(UserDTO user);
+	public void update(UserDTO updateUser);
+
+	public void updatePass(LoginInfoDTO userpass);
 	
 
 }

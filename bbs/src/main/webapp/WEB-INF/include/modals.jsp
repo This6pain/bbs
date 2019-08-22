@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 		<%@ include file="../include/bootstrap.jsp" %>
-
+		
 	</head>
 	<body>
 				
@@ -48,45 +48,45 @@
 		<!-- Modal sign-up -->
 		<div class="modal fade" id="joinModal" role="dialog">
 			<div class="modal-dialog">
-				<div class="modal-content card" style="width: 80%; height: 80%;">
+				<div class="modal-content card" style="width: 80%;">
 					<div class="modal-header" style="color: white">
 						<h3>会員加入</h3>
 					</div>
 					<div class="modal-body">
 						<form action="join" method="post">
 							<div class="form-group" >
-								<label for="user_id" style="color: white">ID（メールアドレス）</label>
-									<input type="text" class="form-control" id="user_id" name="u_id" placeholder="ID（メールアドレス）" required>
+								<label for="u_id" style="color: white">ID（メールアドレス）</label>
+									<input type="text" class="form-control" id="u_id" name="u_id" placeholder="ID（メールアドレス）" required>
 								<div class="check_font" id="id_check"></div>			
 							</div>
 							<div class="form-group">
-								<label for="user_pw" style="color: white">PASSWORD</label>
-									<input type="password" class="form-control" id="user_pw" name="u_pass" placeholder="PASSWORD" required>
+								<label for="u_pass" style="color: white">PASSWORD</label>
+									<input type="password" class="form-control" id="u_pass" name="u_pass" placeholder="PASSWORD" required>
 								<div class="check_font" id="pw_check"></div>
 							</div>
 							<div class="form-group">
-								<label for="user_pw2" style="color: white">PASSWORD確認</label>
-									<input type="password" class="form-control" id="user_pw2" name="u_pass2" placeholder="Confirm Password" required>
+								<label for="u_pass2" style="color: white">PASSWORD確認</label>
+									<input type="password" class="form-control" id="u_pass2" name="u_pass2" placeholder="Confirm Password" required>
 								<div class="check_font" id="pw2_check"></div>
 							</div>
 							<div class="form-group">
-								<label for="user_name" style="color: white">ニックネーム</label>
-									<input type="text" class="form-control" id="user_name" name="u_nickname" placeholder="ニックネーム" required>
+								<label for="u_nickname" style="color: white">ニックネーム</label>
+									<input type="text" class="form-control" id="u_nickname" name="u_nickname" placeholder="ニックネーム" required>
 								<div class="check_font" id="nickname_check"></div>
 							</div>
 							<div class="form-group">
-								<label for="user_name" style="color: white">名前（漢字）</label>
-									<input type="text" class="form-control" id="user_name" name="u_kanjiname" placeholder="名前（漢字）" required>
+								<label for="u_kanjiname" style="color: white">名前（漢字）</label>
+									<input type="text" class="form-control" id="u_kanjiname" name="u_kanjiname" placeholder="名前（漢字）" required>
 								<div class="check_font" id="kanziname_check"></div>								
 							</div>
 							<div class="form-group">
-								<label for="user_name" style="color: white">名前（カタカナ）</label>
-									<input type="text" class="form-control" id="user_name" name="u_kananame" placeholder="名前（カタカナ）" required>
+								<label for="u_kananame" style="color: white">名前（カタカナ）</label>
+									<input type="text" class="form-control" id="u_kananame" name="u_kananame" placeholder="名前（カタカナ）" required>
 								<div class="check_font" id="kananame_check"></div>								
 							</div>
 							<div class="form-group required">
-								<label for="user_birth" style="color: white">生年月日</label>
-									<input type="text" class="form-control" id="user_birth" name="u_birthdate" placeholder="ex) 19990415" required>
+								<label for="u_birthdate" style="color: white">生年月日</label>
+									<input type="text" class="form-control" id="u_birthdate" name="u_birthdate" placeholder="ex) 19990415" required>
 								<div class="check_font" id="birth_check"></div>
 							</div>
 							<div class="reg_button">
@@ -150,6 +150,7 @@
 							<div class="form-group">
 								<label for="user_pw" style="color: white">PASSWORD</label>
 									<input type="password" class="form-control" id="user_pw" name="u_pass" placeholder="PASSWORD" required>
+									<input type="hidden" name="u_no" value="${loginUser.u_no })">									
 								<div class="check_font" id="pw_check"></div>
 							</div>
 							<div class="form-group">
@@ -161,7 +162,8 @@
 								<label for="user_pw2" style="color: white">新しいPASSWORD確認</label>
 									<input type="password" class="form-control" id="user_pw2" name="newpass2" placeholder="Confirm Password" required>
 								<div class="check_font" id="pw2_check"></div>
-							</div>							
+							</div>
+														
 							<div class="reg_button">
 								<input type="submit" value="変更" class="btn btn-primary px-3">				
 							</div>							

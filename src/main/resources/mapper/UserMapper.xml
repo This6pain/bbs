@@ -20,12 +20,16 @@
  		SELECT * FROM ggh_bbs.user WHERE u_id = #{login_id} AND u_pass = #{login_pass}
  	</select>
  	
- 	<delete id="delete" parameterType="com.ggh.bbs.dto.UserDTO">
- 		DELETE FROM ggh_bbs.user WHERE u_id = #{u_id}
+ 	<delete id="delete" parameterType="int">
+ 		DELETE FROM ggh_bbs.user WHERE u_no = #{u_no}
  	</delete>
  	
  	<update id="update" parameterType="com.ggh.bbs.dto.UserDTO"> 
- 		UPDATE ggh_bbs.user SET u_pass = #{u_pass} , u_nickname = #{u_nickname} , u_kanjiname = #{u_kanjiname} , u_kananame = #{u_kananame} WHERE u_id = #{u_id} 
+ 		UPDATE ggh_bbs.user SET u_nickname = #{u_nickname} , u_kanjiname = #{u_kanjiname} , u_kananame = #{u_kananame} WHERE u_id = #{u_id} 
+ 	</update>
+ 	
+ 	<update id="updatePass" parameterType="com.ggh.bbs.dto.LoginInfoDTO"> 
+ 		UPDATE ggh_bbs.user SET u_pass = #{login_pass} WHERE u_id = #{login_id} 
  	</update>
  	
 </mapper> 
