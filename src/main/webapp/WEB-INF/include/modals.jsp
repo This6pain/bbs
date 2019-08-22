@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 		<%@ include file="../include/bootstrap.jsp" %>
-
+		<%@ include file="../include/bbs.jsp" %>
 	</head>
 	<body>
 				
@@ -56,7 +56,7 @@
 						<form action="join" method="post">
 							<div class="form-group" >
 								<label for="user_id" style="color: white">ID（メールアドレス）</label>
-									<input type="email" class="form-control" id="user_id" name="u_id" placeholder="ID（メールアドレス）" required>
+									<input type="text" class="form-control" id="user_id" name="u_id" placeholder="ID（メールアドレス）" required>
 								<div class="check_font" id="id_check"></div>			
 							</div>
 							<div class="form-group">
@@ -71,22 +71,22 @@
 							</div>
 							<div class="form-group">
 								<label for="user_name" style="color: white">ニックネーム</label>
-									<input type="text" class="form-control" id="user_name" name="u_nickname" placeholder="ニックネーム" required>
+									<input type="text" class="form-control" id="user_nickname" name="u_nickname" placeholder="ニックネーム" required>
 								<div class="check_font" id="nickname_check"></div>
 							</div>
 							<div class="form-group">
 								<label for="user_name" style="color: white">名前（漢字）</label>
-									<input type="text" class="form-control" id="user_name" name="u_kanjiname" placeholder="名前（漢字）" required>
+									<input type="text" class="form-control" id="user_kanjiname" name="u_kanjiname" placeholder="名前（漢字）" required>
 								<div class="check_font" id="kanziname_check"></div>								
 							</div>
 							<div class="form-group">
 								<label for="user_name" style="color: white">名前（カタカナ）</label>
-									<input type="text" class="form-control" id="user_name" name="u_kananame" placeholder="名前（カタカナ）" required>
+									<input type="text" class="form-control" id="user_kananame" name="u_kananame" placeholder="名前（カタカナ）" required>
 								<div class="check_font" id="kananame_check"></div>								
 							</div>
 							<div class="form-group required">
 								<label for="user_birth" style="color: white">生年月日</label>
-									<input type="text" class="form-control" id="user_birth" name="u_birthdate" placeholder="ex) 19990415" required>
+									<input type="text" class="form-control" id="user_birthdate" name="u_birthdate" placeholder="ex) 19990415" required>
 								<div class="check_font" id="birth_check"></div>
 							</div>
 							<div class="reg_button">
@@ -111,22 +111,22 @@
 							<input type="hidden" name="u_pass" value="${loginUser.u_pass}">
 							<div class="form-group">
 								<label for="user_name" style="color: white">ニックネーム</label>
-									<input type="text" class="form-control" id="u_nickname" name="u_nickname" placeholder="${loginUser.u_nickname}" required>
+									<input type="text" class="form-control" id="user_nickname" name="u_nickname" placeholder="${loginUser.u_nickname}" required>
 								<div class="check_font" id="nickname_check"></div>
 							</div>
 							<div class="form-group">
 								<label for="user_name" style="color: white">名前（漢字）</label>
-									<input type="text" class="form-control" id="u_kanjiname" name="u_kanjiname" placeholder="${loginUser.u_kanjiname}" required>
+									<input type="text" class="form-control" id="user_kanjiname" name="u_kanjiname" placeholder="${loginUser.u_kanjiname}" required>
 								<div class="check_font" id="kanziname_check"></div>								
 							</div>
 							<div class="form-group">
 								<label for="user_name" style="color: white">名前（カタカナ）</label>
-									<input type="text" class="form-control" id="u_kananame" name="u_kananame" placeholder="${loginUser.u_kananame}" required>
+									<input type="text" class="form-control" id="user_kananame" name="u_kananame" placeholder="${loginUser.u_kananame}" required>
 								<div class="check_font" id="kananame_check"></div>								
 							</div>
 							<div class="form-group required">
 								<label for="user_birth" style="color: white">生年月日</label>
-									<input type="text" class="form-control" id="u_birthdate" name="u_birthdate" placeholder="${loginUser.u_birthdate}" required>
+									<input type="text" class="form-control" id="user_birthdate" name="u_birthdate" placeholder="${loginUser.u_birthdate}" required>
 								<div class="check_font" id="birth_check"></div>
 							</div>							
 							<div class="reg_button">
@@ -150,12 +150,12 @@
 						<form action="updatepass" method="post">
 							<div class="form-group">
 								<label for="user_pw" style="color: white">PASSWORD</label>
-									<input type="password" class="form-control" id="olduser_pw" name="old" placeholder="PASSWORD" required>
-								<div class="check_font" id="pw_check"></div>
+									<input type="password" class="form-control" id="old_pw" name="old" placeholder="PASSWORD" required>
+								<div class="check_font" id="oldpw_check"></div>
 							</div>
 							<div class="form-group">
 								<label for="user_pw" style="color: white">新しいPASSWORD</label>
-									<input type="password" class="form-control" id="newuser_pw" name="login_pass" placeholder="PASSWORD" required>
+									<input type="password" class="form-control" id="user_pw" name="login_pass" placeholder="PASSWORD" required>
 									<input type="hidden" value="${loginUser.u_id}" name="login_id">
 								<div class="check_font" id="pw_check"></div>
 							</div>
