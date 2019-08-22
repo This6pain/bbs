@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ggh.bbs.mapper.UserMapper">
+ 	
+ 	<insert id="join" parameterType="com.ggh.bbs.dto.UserDTO" useGeneratedKeys="true" keyProperty="u_no">
+ 		INSERT INTO ggh_bbs.user(u_id, u_pass, u_kanjiname, u_kananame, u_nickname, u_birthdate, admin_check)
+ 		 VALUES(#{u_id}, #{u_pass}, #{u_kanjiname}, #{u_kananame}, #{u_nickname}, #{u_birthdate},#{admin_check})
+ 	</insert>
+  	
+ 	<select id = "idcheck" parameterType="com.ggh.bbs.dto.UserDTO" resultType="int">
+        SELECT count(*) FROM ggh_bbs.user WHERE u_id = #{u_id}
+    </select>
+ 	<select id = "logincheck" parameterType="com.ggh.bbs.dto.LoginInfoDTO" resultType="int">
+        SELECT count(*) FROM ggh_bbs.user WHERE u_id = #{login_id} AND  u_pass = #{login_pass}
+    </select>
+
+ 	<select id="login" parameterType="com.ggh.bbs.dto.LoginInfoDTO" resultType="com.ggh.bbs.dto.UserDTO">
+ 		SELECT * FROM ggh_bbs.user WHERE u_id = #{login_id} AND u_pass = #{login_pass}
+ 	</select>
+ 	
+ 	<delete id="delete" parameterType="com.ggh.bbs.dto.UserDTO">
+ 		DELETE FROM ggh_bbs.user WHERE u_id = #{u_id}
+ 	</delete>
+ 	
+ 	<update id="update" parameterType="com.ggh.bbs.dto.UserDTO"> 
+ 		UPDATE ggh_bbs.user SET u_pass = #{u_pass} , u_nickname = #{u_nickname} , u_kanjiname = #{u_kanjiname} , u_kananame = #{u_kananame} WHERE u_id = #{u_id} 
+ 	</update>
+ 	
+</mapper> 
