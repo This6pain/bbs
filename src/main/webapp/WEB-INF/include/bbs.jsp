@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <script type="text/javascript">
 
 	var empCK = /\s/g;
@@ -11,14 +12,12 @@
 	
 	var pwCK = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 
 
-	var kanziCK = /^[一-龠]$/;
+	var kanziCK = /^[一-龠]*$/;
 
-	var kanaCK = /^[ぁ-んァ-ヶ―]$/;
+	var kanaCK =　/^[ぁ-んァ-ン]+$/;
 
 	var birthCK = false;
-
-	
-			
+		
 	$("#user_id").blur(function() {
 		if (idCK.test($(this).val())) {
 				console.log(idCK.test($(this).val()));
@@ -29,15 +28,6 @@
 		}
 	});
 
-	$("#user_kanziname").blur(function() {
-		if (kanziCK.test($(this).val())) {
-				console.log(kanziCK.test($(this).val()));
-				$("#kanziname_check").text('');
-		} else {
-			$('#kanziname_check').text('名前を確認してください');
-			$('#kanziname_check').css('color', 'red');
-		}
-	});
 
 	$("#user_pw").blur(function() {
 		if (pwCK.test($(this).val())) {
@@ -51,21 +41,29 @@
 
 	$("#user_pw2").blur(function() {
 		if (pwCK.test($(this).val())) {
-				console.log(pwCK.test($(this).val()));
+			if($(this).val()==$("#user_pw").val()){
 				$("#pw2_check").text('');
+			} else{
+				$('#pw2_check').text('暗証番号が一致しません。');
+				$('#pw2_check').css('color', 'red');
+			}
 		} else {
 			$('#pw2_check').text('有効な形式ではありません。');
 			$('#pw2_check').css('color', 'red');
 		}
-		
-		if($(this).val()=$("#user_pw").val()){
-			$("#pw2_check").text('');
-		} else{
-			$('#pw2_check').text('暗証番号が一致しません。');
-			$('#pw2_check').css('color', 'red');
-		}
+	
 	});
 
+	$("#user_kanziname").blur(function() {
+		if (kanziCK.test($(this).val())) {
+				console.log(kanziCK.test($(this).val()));
+				$("#kanziname_check").text('');
+		} else {
+			$('#kanziname_check').text('名前を確認してください');
+			$('#kanziname_check').css('color', 'red');
+		}
+	});
+	
 	$("#user_kananame").blur(function() {
 		if (kanaCK.test($(this).val())) {
 				console.log(kanaCK.test($(this).val()));

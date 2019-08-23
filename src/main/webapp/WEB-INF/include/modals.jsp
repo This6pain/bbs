@@ -7,6 +7,13 @@
 	<title>Insert title here</title>
 		<%@ include file="../include/bootstrap.jsp" %>
 		<%@ include file="../include/bbs.jsp" %>
+		
+		<style type="text/css">
+			.check_font{
+				font-size: 15px;
+				
+			}
+		</style>
 	</head>
 	<body>
 				
@@ -22,13 +29,13 @@
 						<form action="login" method="post">
 							<div class="form-group" >
 								<label for="user_id" style="color: white">ID（メールアドレス）</label>
-									<input type="text" class="form-control" id="user_id" name="login_id" placeholder="ID（メールアドレス）" required>
-								<div class="check_font" id="id_check"></div>			
+									<input type="text" class="form-control" id="login_user_id" name="login_id" placeholder="ID（メールアドレス）" required>
+								<div class="check_font" id="login_id_check"></div>			
 							</div>
 							<div class="form-group">
 								<label for="user_pw" style="color: white">PASSWORD</label>
-									<input type="password" class="form-control" id="user_pw" name="login_pass" placeholder="PASSWORD" required>
-								<div class="check_font" id="pw_check"></div>
+									<input type="password" class="form-control" id="login_user_pw" name="login_pass" placeholder="PASSWORD" required>
+								<div class="check_font" id="login_pw_check"></div>
 							</div>
 							<div>
 								<input type="submit" value="ログイン" class="btn float-right login_btn" style="padding: 10px;">						
