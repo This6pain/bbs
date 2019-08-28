@@ -4,6 +4,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ggh.bbs.mapper.BoardMapper">
  	
-
+	<insert id="boardWrite" parameterType="com.ggh.bbs.dto.BoardDTO" useGeneratedKeys="true" keyProperty="b_id">
+ 		INSERT INTO ggh_bbs.board(b_title, b_content, b_writer)
+ 		 VALUES(#{b_title}, #{b_content}, #{b_writer})
+ 	</insert>
+  	
+ 	<select id = "boardView" parameterType="int" resultType="com.ggh.bbs.dto.BoardDTO">
+        SELECT * FROM ggh_bbs.board WHERE b_id = #{b_id}
+    </select>
+    
+	<select id="boardList" resultType="com.ggh.bbs.dto.BoardDTO">
+		SELECT * FROM ggh_bbs.board ORDER BY b_id DESC
+	</select>
+ 	
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM ggh_bbs.board WHERE b_id = #{b_id}
+	</delete>
+ 	
+	<update id="updateHit" parameterType="int"> 
+		UPDATE ggh_bbs.board SET b_hit = b_hit+1 WHERE b_id = #{b_id} 
+	</update>
+ 	
+	<update id="boardUpdate" parameterType="com.ggh.bbs.dto.BoardDTO"> 
+		UPDATE ggh_bbs.board SET b_title = #{b_title}, b_content = #{b_content} WHERE b_id = #{b_id}
+	</update>
  	
 </mapper> 

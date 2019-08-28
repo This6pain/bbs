@@ -211,6 +211,7 @@
 						<form action="write" method="post">
 							<div class="form-group" >
 								<label for="user_id" style="color: white">題目</label>
+									<input type="hidden" value="${loginUser.u_no }" name="b_writer">
 									<input type="text" class="form-control" id="board_title" name="b_title" placeholder="題目" required>
 								<div class="check_font" id="id_check"></div>			
 							</div>
@@ -225,6 +226,55 @@
 						</form>
 					</div>
 				</div>						    
+			</div>
+		</div>
+		
+		<!-- Modal board-delete -->
+		<div class="modal fade" id="boardDeleteModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content card" style="width: 80%; height: 80%;">
+					<div class="modal-header" style="color: white">
+						<h3>会員脱退</h3>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="user_pw" style="color: white">脱退しますか？</label>									
+						</div>														
+						<div class="reg_button">
+							<button class="btn btn-danger" onclick="location.href='deleteBoard?b_id=${boardView.b_id}'">脱退</button>
+							<button class="btn btn-primary" data-dismiss="modal">cancel</button>
+						</div>													
+					</div>
+				</div>		    
+			</div>
+		</div>
+		
+		<!-- Modal Board-UpdatePassword -->
+		<div class="modal fade" id="boardUpdateModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content card" style="width: 80%; height: 80%;">
+					<div class="modal-header" style="color: white">
+						<h3>記事修正</h3>
+					</div>
+					<div class="modal-body">
+						<form action="updateBoard" method="post">
+							<div class="form-group" >
+								<label for="user_id" style="color: white">題目</label>
+									<input type="hidden" value="${boardView.b_id }" name="b_id">
+									<input type="text" class="form-control" id="board_title" name="b_title" placeholder="${boardView.b_title }" required>
+								<div class="check_font" id="id_check"></div>			
+							</div>
+							<div class="form-group">
+								<label for="user_pw" style="color: white">内容</label>				
+									<textarea class="form-control" id="board_content" name="b_content"　rows="10" required>${boardView.b_content}</textarea>
+								<div class="check_font" id="pw_check"></div>
+							</div>
+							<div>
+								<input type="submit" value="修正" class="btn btn-primary" style="padding: 10px;">						
+							</div>							
+						</form>
+					</div>
+				</div>		    
 			</div>
 		</div>
 	</body>

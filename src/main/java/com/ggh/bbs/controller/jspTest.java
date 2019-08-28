@@ -6,14 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class jspTest {
 
-	@RequestMapping("/")
-	public String jspTest(){
-		return "test";
-	}
 	
-	@RequestMapping("/mypage")
-	public String mypage() {
-		return "mypage";
-	}
 
 }

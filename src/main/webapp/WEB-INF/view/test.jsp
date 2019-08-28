@@ -52,9 +52,10 @@
 		</nav>		
 		
 		<div class="container">
-
 			<div class = "row">
-				<a class="nav-link" data-toggle="modal" data-target="#writeModal">write</a>
+				<c:if test="${loginUser != null }">
+					<a class="nav-link" data-toggle="modal" data-target="#writeModal">write</a>
+				</c:if>
 				<table class="table">
 					<thead>
 						<tr>
@@ -65,44 +66,50 @@
 								Title
 							</th>
 							<th width="10%">
-								Date
+								writer
 							</th>
 							<th width="10%">
-								writer
+								Date
 							</th>
 							<th width="10%">
 								Hit
 							</th>
 						</tr>
-						<c:if test="${boardList == null}">
-							<tr>
-								<td colspan="5" align="center" style="font-family: sans-serif;">
-									登録された記事がないです。
-								</td>
-							</tr>
-						</c:if>
-						<c:if test="${boardList != null}">
-							<c:forEach var="board" items="${boardList}"></c:forEach>
-							<tr>
-								<td width="10%">
-									${board.b_no}
-								</td>
-								<td width="60%">
-									${board.b_title}
-								</td>
-								<td width="10%">
-									${board.b_no}
-								</td>
-								<td width="10%">
-									<fmt:parseDate value='${board.b_createdate}' var='regdate' pattern='yyyymmddHHMM'/>
-									<fmt:formatDate value="${regdate}" pattern="yyyy-MM-dd HH:mm"/>
-								</td>
-								<th width="10%">
-									${board.b_hit}
-								</td>
-							</tr>
-						</c:if>					
 					</thead>
+					<tbody>					
+						<c:choose>			
+							<c:when test="${boardList == null}">
+								<tr>
+									<td colspan="5" align="center" style="font-family: sans-serif;">
+										登録された記事がないです。
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="board" items="${boardList}">
+									<tr>
+										<td width="10%">
+											${board.b_id}
+										</td>
+										<td width="60%">
+											<a href='<c:url value='/boardView?b_id=${board.b_id }'/>'>${board.b_title}</a>
+										</td>
+										<td width="10%">
+											${board.b_writer}
+										</td>
+										<td width="10%">
+											<%-- <fmt:parseDate value='${board.b_createdate}' var='regdate' pattern='EEE MMM dd HH:mm:ss zzz yyyy'/>										
+											<fmt:parseDate value='${board.b_createdate}' var='regdate' pattern='yyyy-MM-dd HH:mm:ss.s'/>
+											<fmt:formatDate value="${regdate}" pattern="yyyy-MM-dd HH:mm:ss"/> --%>
+										</td>
+										<th width="10%">
+											${board.b_hit}
+										</td>
+									</tr>
+								</c:forEach>								
+							</c:otherwise>
+						</c:choose>	
+					</tbody>					
 				</table>
 			</div>
 		</div>

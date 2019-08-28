@@ -1,6 +1,8 @@
 package com.ggh.bbs.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,76 +22,70 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public ModelAndView join(UserDTO user) {
+	public String join(UserDTO user) {
 	
 		userService.join(user);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("test");	
+		/*
+		 * ModelAndView mav = new ModelAndView(); mav.setViewName("test");
+		 */	
 
-		return mav;
+		return "test";
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public ModelAndView login(LoginInfoDTO loginInfo) {
+	public String login(LoginInfoDTO loginInfo, HttpSession session) {
 
 		UserDTO loginUser = userService.login(loginInfo);
 
-		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("loginUser", loginUser);
-		mav.setViewName("test");	
+		session.setAttribute("loginUser", loginUser);	
 		
-		return mav;				
+		return "redirect:/";				
 	}
 	
 	@RequestMapping(value = "logout")
-	public ModelAndView logout() {
+	public String logout(HttpSession session) {
 		
-		ModelAndView mav = new ModelAndView();
-		mav.clear();
-		mav.setViewName("test");
-		return mav;				
+		session.invalidate();
+		return "redirect:/";				
 
 	}
 	
 	@RequestMapping(value = "delete")
-	public ModelAndView delete(@RequestParam(value="u_no") int u_no) {
+	public ModelAndView delete(@RequestParam(value="u_no") int u_no, HttpSession session) {
 		
 		userService.delete(u_no);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.clear();
-		mav.setViewName("test");
+		session.invalidate();
+		mav.setViewName("redirect:/");
 		return mav;				
 
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update(UserDTO updateUser) {
+	public String update(UserDTO updateUser, HttpSession session) {
 		
 		userService.update(updateUser);
-		
-		ModelAndView mav = new ModelAndView();
-		
+				
 		UserDTO loginUser = userService.login(new LoginInfoDTO(updateUser.getU_id(), updateUser.getU_pass()));
-		mav.addObject("loginUser", loginUser);
-		mav.setViewName("test");
-		return mav;				
+		
+		session.invalidate();
+		session.setAttribute("loginUser", loginUser);
+
+		return "redirect:/";				
 
 	}
 	
 	@RequestMapping(value = "updatepass", method = RequestMethod.POST)
-	public ModelAndView updatePass(LoginInfoDTO userPass) {
-		
-		ModelAndView mav = new ModelAndView();
+	public String updatePass(LoginInfoDTO userPass, HttpSession session) {		
 		
 		userService.updatePass(userPass);
 		
-		mav.clear();
 		UserDTO loginUser = userService.login(userPass);
-		mav.addObject("loginUser", loginUser);
-		mav.setViewName("test");
-		return mav;				
+		session.invalidate();
+		session.setAttribute("loginUser", loginUser);
+
+		return "redirect:/";			
 
 	}
 }

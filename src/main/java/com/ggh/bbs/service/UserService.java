@@ -17,5 +17,7 @@ public interface UserService {
 	public void delete(int u_no);
 
 	public void updatePass(LoginInfoDTO userPass);
+
+	public String getNick(int b_writer);
 	
 }

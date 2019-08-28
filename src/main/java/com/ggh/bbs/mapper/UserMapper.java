@@ -21,6 +21,8 @@ public interface UserMapper {
 	public void update(UserDTO updateUser);
 
 	public void updatePass(LoginInfoDTO userpass);
+
+	public String getNick(int b_writer);
 	
 
 }

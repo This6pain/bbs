@@ -5,13 +5,18 @@
 <mapper namespace="com.ggh.bbs.mapper.UserMapper">
  	
  	<insert id="join" parameterType="com.ggh.bbs.dto.UserDTO" useGeneratedKeys="true" keyProperty="u_no">
- 		INSERT INTO ggh_bbs.user(u_id, u_pass, u_kanjiname, u_kananame, u_nickname, u_birthdate, admin_check)
- 		 VALUES(#{u_id}, #{u_pass}, #{u_kanjiname}, #{u_kananame}, #{u_nickname}, #{u_birthdate},#{admin_check})
+ 		INSERT INTO ggh_bbs.user(u_id, u_pass, u_kanjiname, u_kananame, u_nickname, u_birthdate)
+ 		 VALUES(#{u_id}, #{u_pass}, #{u_kanjiname}, #{u_kananame}, #{u_nickname}, #{u_birthdate})
  	</insert>
   	
  	<select id = "idcheck" parameterType="com.ggh.bbs.dto.UserDTO" resultType="int">
         SELECT count(*) FROM ggh_bbs.user WHERE u_id = #{u_id}
     </select>
+    
+    <select id = "getNick" parameterType="int" resultType="java.lang.String">
+        SELECT u_nickname FROM ggh_bbs.user WHERE u_no = #{b_writer}
+    </select>
+    
  	<select id = "logincheck" parameterType="com.ggh.bbs.dto.LoginInfoDTO" resultType="int">
         SELECT count(*) FROM ggh_bbs.user WHERE u_id = #{login_id} AND  u_pass = #{login_pass}
     </select>

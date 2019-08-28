@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO login(LoginInfoDTO loginInfo) {
-		System.out.println(loginInfo.getLogin_id()+"2");
 		return userMapper.login(loginInfo);
 	}
 
@@ -49,6 +48,14 @@ public class UserServiceImpl implements UserService {
 	public void updatePass(LoginInfoDTO userPass) {
 		
 		userMapper.updatePass(userPass);
+	}
+
+	@Override
+	public String getNick(int b_writer) {
+		System.out.println(b_writer);
+		String result =userMapper.getNick(b_writer); 
+		System.out.println(result);
+		return result;
 	}
 
 }

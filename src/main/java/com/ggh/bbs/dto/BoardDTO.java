@@ -50,12 +50,7 @@ public class BoardDTO {
 	public void setB_writer(int b_writer) {
 		this.b_writer = b_writer;
 	}
-	public int getB_category() {
-		return b_category;
-	}
-	public void setB_category(int b_category) {
-		this.b_category = b_category;
-	}
+
 	public Timestamp getB_createdate() {
 		return b_createdate;
 	}
