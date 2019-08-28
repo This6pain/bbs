@@ -84,7 +84,7 @@
 						</c:when>
 						<c:otherwise>
 							<button type="button" class="btn btn-default"
-								onclick="location.href='${pageContext.request.contextPath}/admin/CEOBoardView/view/${preNum}?page=${param.page}&keyword=${param.keyword}'">Prev</button>
+								onclick="location.href='#'">Prev</button>
 						</c:otherwise>
 					</c:choose>
 					<c:choose>
@@ -93,7 +93,7 @@
 						</c:when>
 						<c:otherwise>
 							<button type="button" class="btn btn-default"
-								onclick="location.href='${pageContext.request.contextPath}/admin/CEOBoardView/view/${nextNum}?page=${param.page}&keyword=${param.keyword}'">Next</button>
+								onclick="location.href='#'">Next</button>
 						</c:otherwise>
 					</c:choose>
 				</div>
