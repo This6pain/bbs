@@ -103,7 +103,7 @@
 											<fmt:parseDate value='${board.b_createdate}' var='regdate2' pattern='yyyy-MM-dd HH:mm:ss'/> 
 											<fmt:formatDate value="${regdate}" pattern="yyyy-MM-dd HH:mm:ss.S" type="both"/>--%>
 										</td>
-										<th width="5%">
+										<td width="5%">
 											${board.b_hit}
 										</td>
 									</tr>

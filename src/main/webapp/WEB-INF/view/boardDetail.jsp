@@ -80,7 +80,7 @@
 				<div class="col-sm-6" align="left">
 					<c:choose>
 						<c:when test="${preNum == -1}">
-							<button type="button" class="btn btn-default disabled">이전</button>
+							<button type="button" class="btn btn-default disabled">Prev</button>
 						</c:when>
 						<c:otherwise>
 							<button type="button" class="btn btn-default"
@@ -89,7 +89,7 @@
 					</c:choose>
 					<c:choose>
 						<c:when test="${nextNum == -1}">
-							<button type="button" class="btn btn-default disabled">다음</button>
+							<button type="button" class="btn btn-default disabled">Next</button>
 						</c:when>
 						<c:otherwise>
 							<button type="button" class="btn btn-default"
@@ -114,7 +114,7 @@
 				        	<h4 align="center">ログインしてください</h4>
 				        </c:if>
 				        <c:if test="${loginUser.u_no != null}">
-				        <form name="insertComent" id="insertComent" method="post">
+				        <form name="insertComment" id="insertComment" method="post">
 				            <div class="input-group">
 				               <input type="hidden" name="r_board" value="${boardView.b_id}"/>
 				               <input type="hidden" name="r_writer" value="${loginUser.u_no }">
