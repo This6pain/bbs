@@ -9,12 +9,16 @@
  		 VALUES(#{b_title}, #{b_content}, #{b_writer}, b_nick)
  	</insert>
   	
+  	<select id = "boardCnt" resultType="int">
+        SELECT count(*) FROM ggh_bbs.board
+    </select>
+  	
  	<select id = "boardView" parameterType="int" resultType="com.ggh.bbs.dto.BoardDTO">
         SELECT * FROM ggh_bbs.board WHERE b_id = #{b_id}
     </select>
     
-	<select id="boardList" resultType="com.ggh.bbs.dto.BoardDTO">
-		SELECT * FROM ggh_bbs.board ORDER BY b_id DESC
+	<select id="boardList" resultType="com.ggh.bbs.dto.BoardDTO" parameterType="com.ggh.bbs.dto.Page">
+		SELECT * FROM ggh_bbs.board ORDER BY b_id DESC LIMIT #{pageStart}, #{perPageNum}
 	</select>
  	
 	<delete id="boardDelete" parameterType="int">

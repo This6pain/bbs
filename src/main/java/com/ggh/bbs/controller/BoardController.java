@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ggh.bbs.dto.BoardDTO;
-import com.ggh.bbs.dto.BoardListDTO;
+import com.ggh.bbs.dto.Page;
+import com.ggh.bbs.dto.PageMake;
 import com.ggh.bbs.dto.UserDTO;
 import com.ggh.bbs.service.BoardService;
 import com.ggh.bbs.service.UserService;
@@ -27,25 +28,24 @@ public class BoardController {
 	private UserService userService;
 	
 	@RequestMapping("/")
-	public ModelAndView Main(@RequestParam(defaultValue="1") int curPage){
+	public ModelAndView Main(Page page){
 		
-		List<BoardDTO> boardList = boardService.boardList();
 		List<UserDTO> userList = userService.getAllUser();
 		
 		System.out.println(userList.get(0).getU_no());
 		ModelAndView mav = new ModelAndView();
 		
 		//Paging
+		PageMake maker = new PageMake();
+		maker.setPage(page);
+	    maker.setTotalCount(boardService.boardCnt());
 		
-		int listCnt = boardList.size();
-		
-		BoardListDTO paging = new BoardListDTO(listCnt, curPage);
-		
-		
-		
+		List<BoardDTO> boardList = boardService.boardList(page);
+
 		
 		mav.addObject("boardList", boardList);
 		mav.addObject("userList", userList);
+		mav.addObject("pageMaker", maker);
 		mav.setViewName("test");
 		
 		return mav;

@@ -112,6 +112,23 @@
 						</c:choose>	
 					</tbody>					
 				</table>
+				<ul class="btn-group pagination">
+				    <c:if test="${pageMaker.prev }">
+					    <li>
+					        <a href='<c:url value="/?page=${pageMaker.startPage-1 }"/>'>Prev</a>
+					    </li>
+					    </c:if>
+					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+					    <li>
+					        <a href='<c:url value="/?page=${idx }"/>'><i class="fa">${idx }</i></a>
+					    </li>
+					    </c:forEach>
+					    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+					    <li>
+					        <a href='<c:url value="/?page=${pageMaker.endPage+1 }"/>'>Next</a>
+					    </li>
+				    </c:if>
+				</ul>
 			</div>
 		</div>
 	</body>

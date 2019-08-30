@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.ggh.bbs.dto.BoardDTO;
+import com.ggh.bbs.dto.Page;
 import com.ggh.bbs.mapper.BoardMapper;
 import com.ggh.bbs.service.BoardService;
 
@@ -30,9 +31,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardDTO> boardList() {
+	public List<BoardDTO> boardList(Page page) {
 		// TODO 自動生成されたメソッド・スタブ
-		return boardMapper.boardList();
+		return boardMapper.boardList(page);
 	}
 
 	@Override
@@ -51,6 +52,12 @@ public class BoardServiceImpl implements BoardService{
 	public void boardDelete(int b_id) {
 		// TODO 自動生成されたメソッド・スタブ
 		boardMapper.boardDelete(b_id);
+	}
+
+	@Override
+	public int boardCnt() {
+		// TODO 自動生成されたメソッド・スタブ
+		return boardMapper.boardCnt();
 	}
 
 }
