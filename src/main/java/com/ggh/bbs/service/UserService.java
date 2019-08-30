@@ -1,5 +1,7 @@
 package com.ggh.bbs.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.ggh.bbs.dto.LoginInfoDTO;
@@ -19,5 +21,7 @@ public interface UserService {
 	public void updatePass(LoginInfoDTO userPass);
 
 	public String getNick(int b_writer);
+
+	public List<UserDTO> getAllUser();
 	
 }

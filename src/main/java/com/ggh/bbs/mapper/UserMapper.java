@@ -1,5 +1,7 @@
 package com.ggh.bbs.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ggh.bbs.dto.LoginInfoDTO;
@@ -23,6 +25,8 @@ public interface UserMapper {
 	public void updatePass(LoginInfoDTO userpass);
 
 	public String getNick(int b_writer);
+
+	public List<UserDTO> getAllUser();
 	
 
 }

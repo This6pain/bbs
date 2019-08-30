@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ggh.bbs.mapper.ReplyMapper">
+ 	
+	<insert id="insertComment" parameterType="com.ggh.bbs.dto.ReplyDTO" useGeneratedKeys="true" keyProperty="r_id">
+ 		INSERT INTO ggh_bbs.reply(r_content, r_writer, r_nick, r_board)
+ 		 VALUES(#{r_content}, #{r_writer}, #{r_nick}, #{r_board})
+ 	</insert>
+  	
+	<select id="commentList" resultType="com.ggh.bbs.dto.ReplyDTO" parameterType="int">
+		SELECT * FROM ggh_bbs.reply WHERE r_board = #{b_id}
+	</select>
+ 	
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM ggh_bbs.reply WHERE r_id = #{r_id}
+	</delete>
+ 	
+	<update id="updateComment" parameterType="com.ggh.bbs.dto.ReplyDTO"> 
+		UPDATE ggh_bbs.reply SET r_content = #{r_content} WHERE r_id = #{r_id}
+	</update>
+ 	
+</mapper> 

@@ -1,5 +1,7 @@
 package com.ggh.bbs.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -52,10 +54,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String getNick(int b_writer) {
-		System.out.println(b_writer);
-		String result =userMapper.getNick(b_writer); 
-		System.out.println(result);
+		
+		String result = userMapper.getNick(b_writer); 
+
 		return result;
+	}
+
+	@Override
+	public List<UserDTO> getAllUser() {
+		// TODO 自動生成されたメソッド・スタブ
+		return userMapper.getAllUser();
 	}
 
 }

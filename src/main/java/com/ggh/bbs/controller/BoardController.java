@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ggh.bbs.dto.BoardDTO;
+import com.ggh.bbs.dto.BoardListDTO;
+import com.ggh.bbs.dto.UserDTO;
 import com.ggh.bbs.service.BoardService;
 import com.ggh.bbs.service.UserService;
 
@@ -25,28 +27,42 @@ public class BoardController {
 	private UserService userService;
 	
 	@RequestMapping("/")
-	public ModelAndView jspTest(){
+	public ModelAndView Main(@RequestParam(defaultValue="1") int curPage){
 		
 		List<BoardDTO> boardList = boardService.boardList();
+		List<UserDTO> userList = userService.getAllUser();
 		
-		
+		System.out.println(userList.get(0).getU_no());
 		ModelAndView mav = new ModelAndView();
 		
+		//Paging
+		
+		int listCnt = boardList.size();
+		
+		BoardListDTO paging = new BoardListDTO(listCnt, curPage);
+		
+		
+		
+		
 		mav.addObject("boardList", boardList);
+		mav.addObject("userList", userList);
 		mav.setViewName("test");
 		
 		return mav;
 	}
 
 	@RequestMapping(value = "write", method = RequestMethod.POST)
-	public String write(BoardDTO board) {
+	public ModelAndView write(BoardDTO board) {
 	
-		boardService.boardWrite(board);
-		/*
-		 * ModelAndView mav = new ModelAndView(); mav.setViewName("test");
-		 */	
+		String nick = userService.getNick(board.getB_writer());		
 
-		return "redirect:/";
+		board.setB_nick(nick);
+		
+		boardService.boardWrite(board);
+
+		ModelAndView mav = new ModelAndView("redirect:/");
+		
+		return mav;	
 	}
 	
 	@RequestMapping(value = "deleteBoard")
@@ -77,12 +93,9 @@ public class BoardController {
 		BoardDTO boardView = boardService.boardView(b_id);
 		boardService.updateHit(b_id);
 		
-		String writer = userService.getNick(boardView.getB_writer());
-		
 		ModelAndView mav = new ModelAndView("boardDetail");
 		mav.addObject("boardView", boardView);
-		mav.addObject("writer", writer);
-		
+
 		return mav;				
 
 	}

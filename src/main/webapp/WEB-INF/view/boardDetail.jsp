@@ -9,7 +9,7 @@
 		<title>Insert title here</title>
 		<%@ include file="../include/bootstrap.jsp" %>
 		<%@ include file="../include/modals.jsp" %>
-		<%@ include file="../include/bbs.jsp" %>
+ 		<%@ include file="../include/reply.jsp" %>
 		
 	</head>
 	<body>
@@ -62,11 +62,11 @@
 					No : ${boardView.b_id}										
 				</div>
 				<div class="col-sm-2" style="text-align: center;; padding-left: 15px;">
-					Writer : ${writer}
+					Writer : ${boardView.b_nick}
 				</div>
 				<div class="col-sm-3" style="text-align: right; padding-right: 20px;">
-					<%-- <fmt:parseDate value='${boardView.b_createdate}' var='regdate' pattern='yyyymmddHHMM'/> --%>
-					Date : -<%-- <fmt:formatDate value="${regdate}" pattern="yyyy-MM-dd HH:mm" /> --%>
+					<%-- <fmt:parseDate value='${boardView.b_createdate}' var='regdate' pattern='yyyy-MM-dd HH:mm:ss'/> --%>
+					Date : -<%-- <fmt:formatDate value="${regdate}" pattern="yyyy-MM-dd HH:mm:ss" /> --%>
 				</div>
 			</div>
 			<div class="row">
@@ -105,26 +105,36 @@
 					<button type="button" class="btn btn-default" onclick="location.href='/'">目録</button>
 				</div>
 			</div>
-			<br>
+			<hr>
 		    <div class="container">
-		    	<div class="row" style="padding-right: 30px">
-			        <label for="content">comment</label>
-			        <form name="commentInsertForm">
-			            <div class="input-group">
-			               <input type="hidden" name="r_board" value="${boardView.b_id}"/>
-			               <input type="hidden" name="r_writer" value="${loginUser.u_no }">
-			               <input type="text" class="form-control" id="content" name="t_content" placeholder="内容を入力してください">
-			               <span class="input-group-btn">
-			                    <button class="btn btn-default" type="button" name="commentInsertBtn">登録</button>
-			               </span>
-			              </div>
-			        </form>
-			    </div>
-    
-		    	<div class="row" style="padding-right: 30px">
-		        	<div class="commentList"></div>
+		    	<div class="row">
+			    	<div class="my-3 p-3" style="padding-right: 30px">
+				        <label for="content">comment</label>
+				        <c:if test="${loginUser.u_no == null}">
+				        	<h4 align="center">ログインしてください</h4>
+				        </c:if>
+				        <c:if test="${loginUser.u_no != null}">
+				        <form name="insertComent" id="insertComent" method="post">
+				            <div class="input-group">
+				               <input type="hidden" name="r_board" value="${boardView.b_id}"/>
+				               <input type="hidden" name="r_writer" value="${loginUser.u_no }">
+				               <input type="text" class="form-control" id="content" name="r_content" placeholder="内容を入力してください">
+				               <span class="input-group-btn">
+				                   <button class="btn btn-default" id="insertBtn" >登録</button>
+				               </span>
+				        	</div>
+				        </form>
+				    </div>
+	    
+    				<div class="my-3 p-3" style="padding-top: 10px">
+	
+						<div id="commentList"></div>
+						</c:if>
+					</div> 
+
 		    	</div>
 			</div>
 		</div>
+		
 	</body>
 </html>

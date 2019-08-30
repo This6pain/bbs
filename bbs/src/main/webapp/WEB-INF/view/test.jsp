@@ -94,7 +94,9 @@
 											<a href="#">${board.b_title}</a>
 										</td>
 										<td width="10%">
-											${board.b_writer}
+ 											<c:forEach var="user" items="${userList }">
+												<c:if test="${board.b_writer == user.u_no})">${user.u_nickname}</c:if>
+											</c:forEach>
 										</td>
 										<td width="10%">
 											<%-- <fmt:parseDate value='${board.b_createdate}' var='regdate' pattern='EEE MMM dd HH:mm:ss zzz yyyy'/>										

@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ggh.bbs.mapper.UserMapper">
+
  	
  	<insert id="join" parameterType="com.ggh.bbs.dto.UserDTO" useGeneratedKeys="true" keyProperty="u_no">
  		INSERT INTO ggh_bbs.user(u_id, u_pass, u_kanjiname, u_kananame, u_nickname, u_birthdate)
@@ -15,6 +16,10 @@
     
     <select id = "getNick" parameterType="int" resultType="java.lang.String">
         SELECT u_nickname FROM ggh_bbs.user WHERE u_no = #{b_writer}
+    </select>
+    
+    <select id="getAllUser" resultType="com.ggh.bbs.dto.UserDTO">
+    	SELECT * FROM ggh_bbs.user
     </select>
     
  	<select id = "logincheck" parameterType="com.ggh.bbs.dto.LoginInfoDTO" resultType="int">

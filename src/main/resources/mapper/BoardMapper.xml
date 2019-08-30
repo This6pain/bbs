@@ -5,8 +5,8 @@
 <mapper namespace="com.ggh.bbs.mapper.BoardMapper">
  	
 	<insert id="boardWrite" parameterType="com.ggh.bbs.dto.BoardDTO" useGeneratedKeys="true" keyProperty="b_id">
- 		INSERT INTO ggh_bbs.board(b_title, b_content, b_writer)
- 		 VALUES(#{b_title}, #{b_content}, #{b_writer})
+ 		INSERT INTO ggh_bbs.board(b_title, b_content, b_writer, b_nick)
+ 		 VALUES(#{b_title}, #{b_content}, #{b_writer}, b_nick)
  	</insert>
   	
  	<select id = "boardView" parameterType="int" resultType="com.ggh.bbs.dto.BoardDTO">

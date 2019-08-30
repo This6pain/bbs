@@ -200,7 +200,7 @@
 			</div>
 		</div>
 		
-		<!-- Modal write-->
+		<!-- Modal Board-write-->
 		<div class="modal fade" id="writeModal" role="dialog">
 			<div class="modal-dialog">			
 				<div class="modal-content card" style="width: 800px; height: 80%;">
@@ -212,6 +212,7 @@
 							<div class="form-group" >
 								<label for="user_id" style="color: white">題目</label>
 									<input type="hidden" value="${loginUser.u_no }" name="b_writer">
+									<input type="hidden" value="${loginUser.u_nickname }" name="b_nick">
 									<input type="text" class="form-control" id="board_title" name="b_title" placeholder="題目" required>
 								<div class="check_font" id="id_check"></div>			
 							</div>

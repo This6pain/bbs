@@ -8,7 +8,7 @@ public class BoardDTO {
 	private String b_title;
 	private String b_content;
 	private int b_writer;
-	private int b_category;
+	private String b_nick;
 	private Timestamp b_createdate;
 	private int b_hit;
 	
@@ -16,12 +16,12 @@ public class BoardDTO {
 		
 	}
 	
-	public BoardDTO(int b_id, String b_title, String b_content, int b_writer, int b_category, Timestamp b_createdate, int b_hit) {
+	public BoardDTO(int b_id, String b_title, String b_content, int b_writer, String b_nick, Timestamp b_createdate, int b_hit) {
 		this.b_id = b_id;
 		this.b_title = b_title;
 		this.b_content = b_content;
 		this.b_writer = b_writer;
-		this.b_category = b_category;
+		this.b_nick = b_nick;
 		this.b_createdate = b_createdate;
 		this.b_hit = b_hit;
 	}
@@ -50,7 +50,13 @@ public class BoardDTO {
 	public void setB_writer(int b_writer) {
 		this.b_writer = b_writer;
 	}
+	public String getB_nick() {
+		return b_nick;
+	}
 
+	public void setB_nick(String b_nick) {
+		this.b_nick = b_nick;
+	}
 	public Timestamp getB_createdate() {
 		return b_createdate;
 	}

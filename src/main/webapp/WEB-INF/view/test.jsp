@@ -86,23 +86,24 @@
 								</tr>
 							</c:when>
 							<c:otherwise>
-								<c:forEach var="board" items="${boardList}">
+								<c:forEach var="board" items="${boardList}" varStatus="boardStatus">
 									<tr>
-										<td width="10%">
+										<td width="5%">
 											${board.b_id}
 										</td>
-										<td width="60%">
+										<td width="55%">
 											<a href='<c:url value='/boardView?b_id=${board.b_id }'/>'>${board.b_title}</a>
 										</td>
-										<td width="10%">
-											${board.b_writer}
+										<td width="15%">
+ 											${board.b_nick}											
 										</td>
-										<td width="10%">
-											<%-- <fmt:parseDate value='${board.b_createdate}' var='regdate' pattern='EEE MMM dd HH:mm:ss zzz yyyy'/>										
-											<fmt:parseDate value='${board.b_createdate}' var='regdate' pattern='yyyy-MM-dd HH:mm:ss.s'/>
-											<fmt:formatDate value="${regdate}" pattern="yyyy-MM-dd HH:mm:ss"/> --%>
+										<td width="20%">--
+<%--											<fmt:parseDate value='${board.b_createdate}' var='regdate' pattern='EEE MMM dd HH:mm:ss zzz yyyy'/>	
+ 											<fmt:formatDate value="${regdate}" pattern="EEE MMM dd HH:mm:ss zzz yyyy"/>									
+											<fmt:parseDate value='${board.b_createdate}' var='regdate2' pattern='yyyy-MM-dd HH:mm:ss'/> 
+											<fmt:formatDate value="${regdate}" pattern="yyyy-MM-dd HH:mm:ss.S" type="both"/>--%>
 										</td>
-										<th width="10%">
+										<th width="5%">
 											${board.b_hit}
 										</td>
 									</tr>
