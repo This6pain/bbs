@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<%@ include file="../include/bootstrap.jsp" %>
@@ -112,23 +113,43 @@
 						</c:choose>	
 					</tbody>					
 				</table>
-				<ul class="btn-group pagination">
-				    <c:if test="${pageMaker.prev }">
-					    <li>
-					        <a href='<c:url value="/?page=${pageMaker.startPage-1 }"/>'>Prev</a>
-					    </li>
+				
+				<div class="form-group justify-content-right float-left">
+					<div class="w100" style="padding-right:10px">	
+						<select class="form-control form-control-sm" name="searchType" id="searchType">		
+							<option value="title">題目</option>		
+							<option value="content">内容</option>		
+							<option value="all">題目+内容</option>		
+						</select>		
+					</div>		
+					<div class="w300" style="padding-right:10px">		
+						<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">		
+					</div>		
+					<div>	
+						<button class="btn btn-sm btn-primary" name="searchBtn" id="searchBtn">検索</button>		
+					</div>
+				</div>
+				
+				<div class="float-right">
+					<ul class="btn-group pagination">
+					    <c:if test="${pageMaker.prev }">
+						    <li>
+						        <a href='<c:url value="/?page=${pageMaker.startPage-1 }"/>'>Prev</a>
+						    </li>
 					    </c:if>
 					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-					    <li>
-					        <a href='<c:url value="/?page=${idx }"/>'><i class="fa">${idx }</i></a>
-					    </li>
+						    <li>
+						        <a href='<c:url value="/?page=${idx }"/>'><i class="fa">${idx }</i></a>
+						    </li>
 					    </c:forEach>
 					    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-					    <li>
-					        <a href='<c:url value="/?page=${pageMaker.endPage+1 }"/>'>Next</a>
-					    </li>
-				    </c:if>
-				</ul>
+						    <li>
+						        <a href='<c:url value="/?page=${pageMaker.endPage+1 }"/>'>Next</a>
+						    </li>
+					    </c:if>
+					</ul>
+				</div>
+			
 			</div>
 		</div>
 	</body>

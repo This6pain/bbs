@@ -131,5 +131,21 @@
 		}
 	});
 
+	$(document).on('click', '#searchBtn', function(e){
+
+		e.preventDefault();
+
+		var url = "${pageContext.request.contextPath}/";
+
+		url = url + "?searchType=" + $('#searchType').val();
+
+		url = url + "&keyword=" + $('#keyword').val();
+
+		location.href = url;
+
+		console.log(url);
+
+	});	
+
 </script>
 

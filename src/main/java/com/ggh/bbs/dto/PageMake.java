@@ -10,9 +10,6 @@ public class PageMake {
     private boolean next;
     private int displayPageNum = 5;
     
-    public Page getPage() {
-        return page;
-    }
     public void setPage(Page page) {
         this.page = page;
     }
@@ -33,6 +30,9 @@ public class PageMake {
         }
         
         startPage = (endPage - displayPageNum) + 1;
+        if(startPage < 0) {
+        	startPage = 1;
+        }
  
         prev = startPage == 1 ? false : true;
         next = endPage * page.getPerPageNum() >= totalCount ? false : true;

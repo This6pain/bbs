@@ -3,7 +3,7 @@ package com.ggh.bbs.service;
 import java.util.List;
 
 import com.ggh.bbs.dto.BoardDTO;
-import com.ggh.bbs.dto.Page;
+import com.ggh.bbs.dto.Search;
 
 public interface BoardService {
 
@@ -11,7 +11,7 @@ public interface BoardService {
 
 	public BoardDTO boardView(int b_id);
 	
-	public List<BoardDTO> boardList(Page page);
+	public List<BoardDTO> boardList(Search search);
 		
 	public void updateHit(int b_id);
 
@@ -19,6 +19,6 @@ public interface BoardService {
 
 	public void boardDelete(int b_id);
 
-	public int boardCnt();
+	public int boardCnt(Search search);
 	
 }

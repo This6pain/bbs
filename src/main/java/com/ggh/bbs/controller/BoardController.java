@@ -6,14 +6,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ggh.bbs.dto.BoardDTO;
-import com.ggh.bbs.dto.Page;
 import com.ggh.bbs.dto.PageMake;
+import com.ggh.bbs.dto.Search;
 import com.ggh.bbs.dto.UserDTO;
 import com.ggh.bbs.service.BoardService;
 import com.ggh.bbs.service.UserService;
@@ -28,23 +29,30 @@ public class BoardController {
 	private UserService userService;
 	
 	@RequestMapping("/")
-	public ModelAndView Main(Page page){
+	public ModelAndView Main(@ModelAttribute("search")Search search){
 		
 		List<UserDTO> userList = userService.getAllUser();
 		
 		System.out.println(userList.get(0).getU_no());
 		ModelAndView mav = new ModelAndView();
 		
-		//Paging
-		PageMake maker = new PageMake();
-		maker.setPage(page);
-	    maker.setTotalCount(boardService.boardCnt());
-		
-		List<BoardDTO> boardList = boardService.boardList(page);
+		//search
 
+		//Paging
+
+		PageMake maker = new PageMake();
+		maker.setPage(search);
+	    maker.setTotalCount(boardService.boardCnt(search));
+		
+		List<BoardDTO> boardList = boardService.boardList(search);
+
+		System.out.println("endPage="+maker.getEndPage());
+		System.out.println("displayPageNum="+maker.getDisplayPageNum());
+		System.out.println("startPage="+maker.getStartPage());
 		
 		mav.addObject("boardList", boardList);
 		mav.addObject("userList", userList);
+//		mav.addObject("pageMaker", maker);
 		mav.addObject("pageMaker", maker);
 		mav.setViewName("test");
 		
