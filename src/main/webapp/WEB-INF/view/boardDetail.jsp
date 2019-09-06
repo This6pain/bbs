@@ -80,12 +80,12 @@
 			<div class="row">
 				<div class="col-sm-6" align="left">
 					<c:choose>
-						<c:when test="${preNum == -1}">
+						<c:when test="${prevNum == -1}">
 							<button type="button" class="btn btn-default disabled">Prev</button>
 						</c:when>
 						<c:otherwise>
 							<button type="button" class="btn btn-default"
-								onclick="location.href='#'">Prev</button>
+								onclick="location.href='<c:url value="/boardView?b_id=${prevNum }&page=${search.page }&searchType=${search.searchType}&keyword=${search.keyword}"/>'">Prev</button>
 						</c:otherwise>
 					</c:choose>
 					<c:choose>
@@ -94,7 +94,7 @@
 						</c:when>
 						<c:otherwise>
 							<button type="button" class="btn btn-default"
-								onclick="location.href='#'">Next</button>
+								onclick="location.href='<c:url value="/boardView?b_id=${nextNum }&page=${search.page }&searchType=${search.searchType}&keyword=${search.keyword}"/>'">Next</button>
 						</c:otherwise>
 					</c:choose>
 				</div>

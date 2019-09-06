@@ -20,5 +20,9 @@ public interface BoardService {
 	public void boardDelete(int b_id);
 
 	public int boardCnt(Search search);
+
+	public int nextBoard(int b_id, Search search);
+
+	public int prevBoard(int b_id, Search search);
 	
 }

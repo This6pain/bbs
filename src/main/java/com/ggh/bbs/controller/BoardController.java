@@ -102,10 +102,13 @@ public class BoardController {
 		
 		BoardDTO boardView = boardService.boardView(b_id);
 		boardService.updateHit(b_id);
-		
+		int nextNum = boardService.nextBoard(b_id, search);
+		int prevNum = boardService.prevBoard(b_id, search);
 		ModelAndView mav = new ModelAndView("boardDetail");
 		mav.addObject("boardView", boardView);
 		mav.addObject("search", search);
+		mav.addObject("prevNum", prevNum);
+		mav.addObject("nextNum", nextNum);
 
 		return mav;				
 

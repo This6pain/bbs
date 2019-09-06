@@ -3,6 +3,7 @@ package com.ggh.bbs.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.ggh.bbs.dto.BoardDTO;
 import com.ggh.bbs.dto.Search;
@@ -24,4 +25,7 @@ public interface BoardMapper {
 
 	public int boardCnt(Search search);
 
+	public int nextBoard(@Param("b_id")int b_id, @Param("searchType")String searchType, @Param("keyword")String keyword);
+
+	public int prevBoard(@Param("b_id")int b_id, @Param("searchType")String searchType, @Param("keyword")String keyword);
 }

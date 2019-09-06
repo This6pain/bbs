@@ -55,5 +55,31 @@
 	<update id="boardUpdate" parameterType="com.ggh.bbs.dto.BoardDTO"> 
 		UPDATE ggh_bbs.board SET b_title = #{b_title}, b_content = #{b_content} WHERE b_id = #{b_id}
 	</update>
+	
+	<select id="prevBoard" resultType="int">
+		SELECT ifnull(max(b_id),-1) FROM ggh_bbs.board WHERE <![CDATA[b_id < #{b_id}]]> 
+				<if test="searchType=='title' and keyword != null and keyword != '' ">
+					AND b_title like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='content' and keyword != null and keyword != '' ">
+					AND b_content like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='all' and keyword != null and keyword != '' ">
+					AND b_title like CONCAT('%', #{keyword}, '%') OR b_content like CONCAT('%', #{keyword}, '%')
+				</if> 
+	</select>
+	
+		<select id="nextBoard" resultType="int">
+		SELECT ifnull(min(b_id),-1) FROM ggh_bbs.board WHERE <![CDATA[b_id > #{b_id}]]> 
+				<if test="searchType=='title' and keyword != null and keyword != '' ">
+					AND b_title like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='content' and keyword != null and keyword != '' ">
+					AND b_content like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='all' and keyword != null and keyword != '' ">
+					AND b_title like CONCAT('%', #{keyword}, '%') OR b_content like CONCAT('%', #{keyword}, '%')
+				</if> 
+	</select>
  	
 </mapper> 

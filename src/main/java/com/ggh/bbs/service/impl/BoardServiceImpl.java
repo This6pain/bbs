@@ -60,4 +60,20 @@ public class BoardServiceImpl implements BoardService{
 		return boardMapper.boardCnt(search);
 	}
 
+	@Override
+	public int nextBoard(int b_id, Search search) {
+		// TODO 自動生成されたメソッド・スタブ
+		String searchType = search.getSearchType();
+		String keyword = search.getKeyword();
+		return boardMapper.nextBoard(b_id, searchType, keyword);
+	}
+
+	@Override
+	public int prevBoard(int b_id, Search search) {
+		// TODO 自動生成されたメソッド・スタブ
+		String searchType = search.getSearchType();
+		String keyword = search.getKeyword();
+		return boardMapper.prevBoard(b_id, searchType, keyword);
+	}
+
 }
