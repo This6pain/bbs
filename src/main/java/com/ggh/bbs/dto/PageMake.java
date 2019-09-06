@@ -25,14 +25,12 @@ public class PageMake {
         
         endPage = (int) (Math.ceil(page.getPage() / (double) displayPageNum) * displayPageNum);
         int tempEndPage = (int) (Math.ceil(totalCount / (double) page.getPerPageNum()));
+        startPage = (endPage - displayPageNum) + 1;
         if (endPage > tempEndPage) {
             endPage = tempEndPage;
         }
         
-        startPage = (endPage - displayPageNum) + 1;
-        if(startPage < 0) {
-        	startPage = 1;
-        }
+        
  
         prev = startPage == 1 ? false : true;
         next = endPage * page.getPerPageNum() >= totalCount ? false : true;

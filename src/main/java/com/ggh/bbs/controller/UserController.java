@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ggh.bbs.dto.LoginInfoDTO;
@@ -29,7 +30,7 @@ public class UserController {
 		 * ModelAndView mav = new ModelAndView(); mav.setViewName("test");
 		 */	
 
-		return "test";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
@@ -88,4 +89,12 @@ public class UserController {
 		return "redirect:/";			
 
 	}
+	
+	@RequestMapping(value = "idCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public int idCheck(@RequestParam("userId") String user_id) {
+
+		return userService.userIdCheck(user_id);
+	}
+
 }

@@ -112,25 +112,26 @@
 							</c:otherwise>
 						</c:choose>	
 					</tbody>					
-				</table>
-				
-				<div class="form-group justify-content-right float-left">
-					<div class="w100" style="padding-right:10px">	
+				</table>		
+			</div>
+			<div class="row">
+				<div class="form-inline"  style="float: left;">				
+					<div class="w100 form-group" style="padding-right:10px;">	
 						<select class="form-control form-control-sm" name="searchType" id="searchType">		
 							<option value="title">題目</option>		
 							<option value="content">内容</option>		
 							<option value="all">題目+内容</option>		
 						</select>		
 					</div>		
-					<div class="w300" style="padding-right:10px">		
+					<div class="form-group w300" style="padding-right:10px; width: 30%">		
 						<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">		
-					</div>		
-					<div>	
-						<button class="btn btn-sm btn-primary" name="searchBtn" id="searchBtn">検索</button>		
 					</div>
+					<div class="form-group">
+						<button class="btn btn-sm btn-primary" name="searchBtn" id="searchBtn">検索</button>		
+					</div>		
 				</div>
-				
-				<div class="float-right">
+			
+				<div class="float-right " style="float: right;">
 					<ul class="btn-group pagination">
 					    <c:if test="${pageMaker.prev }">
 						    <li>
@@ -149,8 +150,7 @@
 					    </c:if>
 					</ul>
 				</div>
-			
 			</div>
-		</div>
+		</div>		
 	</body>
 </html>	

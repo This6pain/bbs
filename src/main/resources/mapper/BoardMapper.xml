@@ -6,7 +6,7 @@
  	
 	<insert id="boardWrite" parameterType="com.ggh.bbs.dto.BoardDTO" useGeneratedKeys="true" keyProperty="b_id">
  		INSERT INTO ggh_bbs.board(b_title, b_content, b_writer, b_nick)
- 		 VALUES(#{b_title}, #{b_content}, #{b_writer}, b_nick)
+ 		 VALUES(#{b_title}, #{b_content}, #{b_writer}, #{b_nick})
  	</insert>
   	
   	<select id = "boardCnt" resultType="int" parameterType="com.ggh.bbs.dto.Search">
@@ -19,7 +19,7 @@
 					AND b_content like CONCAT('%', #{keyword}, '%')
 				</if>
 				<if test="searchType=='all' and keyword != null and keyword != '' ">
-					AND b_title like CONCAT('%', #{keyword}, '%') AND b_content like CONCAT('%', #{keyword}, '%')
+					AND b_title like CONCAT('%', #{keyword}, '%') OR b_content like CONCAT('%', #{keyword}, '%')
 				</if>	
 			</trim>
     </select>
@@ -38,7 +38,7 @@
 					AND b_content like CONCAT('%', #{keyword}, '%')
 				</if>
 				<if test="searchType=='all' and keyword != null and keyword != '' ">
-					AND b_title like CONCAT('%', #{keyword}, '%') AND b_content like CONCAT('%', #{keyword}, '%')
+					AND b_title like CONCAT('%', #{keyword}, '%') OR b_content like CONCAT('%', #{keyword}, '%')
 				</if>	
 			</trim>
 		ORDER BY b_id DESC LIMIT #{pageStart}, #{perPageNum}	

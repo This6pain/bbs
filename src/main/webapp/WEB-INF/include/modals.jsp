@@ -27,6 +27,7 @@
 					</div>
 					<div class="modal-body">
 						<form action="login" method="post">
+							<div class="check_font" id="login_check"></div>
 							<div class="form-group" >
 								<label for="user_id" style="color: white">ID（メールアドレス）</label>
 									<input type="text" class="form-control" id="login_user_id" name="login_id" placeholder="ID（メールアドレス）" required>
@@ -97,7 +98,8 @@
 								<div class="check_font" id="birth_check"></div>
 							</div>
 							<div class="reg_button">
-								<input type="submit" value="加入" class="btn btn-primary" style="padding: 10px;">				
+								<!-- <input type="submit" value="加入" class="btn btn-primary"　id="reg_submit" style="padding: 10px;">		 -->
+								<button class="btn btn-primary" id="reg_btn" style="padding: 10px;" >加入</button>		
 							</div>							
 						</form>
 					</div>

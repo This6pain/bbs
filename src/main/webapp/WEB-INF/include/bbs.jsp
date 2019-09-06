@@ -17,8 +17,47 @@
 	var kanaCK =　/^[ぁ-んァ-ン]+$/;
 
 	var birthCK = false;
-		
+
+	var joinCK = new Array(5).fill(false);
+
 	$("#user_id").blur(function() {
+		// id = "id_reg" / name = "userId"
+		var user_id = $('#user_id').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/idCheck?userId='+ user_id,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);							
+				
+				if (data == 1) {
+					// 1 : 아이디가 중복되는 문구
+					$("#id_check").text("登録されているIDです");
+					$("#id_check").css("color", "red");
+					$("#reg_btn").attr("disabled", true);
+				} else {
+					
+					if(idCK.test(user_id)){
+						$("#id_check").text("");
+						inval_Arr[0] = true;			
+					} else if(user_id == ""){
+						
+						$('#id_check').text('入力してください');
+						$('#id_check').css('color', 'red');
+						$("#reg_btn").attr("disabled", true);				
+						
+					} else {
+						
+						$('#id_check').text("有効な形式ではありません。");
+						$('#id_check').css('color', 'red');
+						$("#reg_btn").attr("disabled", true);
+					}
+					
+				}
+			}
+		});
+	});
+		
+/* 	$("#user_id").blur(function() {
 		if (idCK.test($(this).val())) {
 				console.log(idCK.test($(this).val()));
 				$("#id_check").text('');
@@ -26,13 +65,15 @@
 			$("#id_check").text("有効な形式ではありません。");
 			$("#id_check").css("color", "red");
 		}
-	});
+	}); */
+	IDまたはパスワードが一致しません。
 
 
 	$("#user_pw").blur(function() {
 		if (pwCK.test($(this).val())) {
 				console.log(pwCK.test($(this).val()));
 				$("#pw_check").text('');
+				inval_Arr[0] = true;			
 		} else {
 			$('#pw_check').text('有効な形式ではありません。');
 			$('#pw_check').css('color', 'red');
@@ -43,13 +84,16 @@
 		if (pwCK.test($(this).val())) {
 			if($(this).val()==$("#user_pw").val()){
 				$("#pw2_check").text('');
+				inval_Arr[0] = true;			
 			} else{
 				$('#pw2_check').text('暗証番号が一致しません。');
 				$('#pw2_check').css('color', 'red');
+				$("#reg_btn").attr("disabled", true);
 			}
 		} else {
 			$('#pw2_check').text('有効な形式ではありません。');
 			$('#pw2_check').css('color', 'red');
+			$("#reg_btn").attr("disabled", true);
 		}
 	
 	});
@@ -58,6 +102,7 @@
 		if (kanziCK.test($(this).val())) {
 				console.log(kanziCK.test($(this).val()));
 				$("#kanziname_check").text('');
+				inval_Arr[0] = true;			
 		} else {
 			$('#kanziname_check').text('名前を確認してください');
 			$('#kanziname_check').css('color', 'red');
@@ -68,6 +113,7 @@
 		if (kanaCK.test($(this).val())) {
 				console.log(kanaCK.test($(this).val()));
 				$("#kananame_check").text('');
+				inval_Arr[3] = true;			
 		} else {
 			$('#kananame_check').text('名前を確認してください');
 			$('#kananame_check').css('color', 'red');
@@ -115,13 +161,13 @@
 		    	
 				}else{
 					$('#birth_check').text('');
-					birthCK = true;
+					inval_Arr[4] = true;			
 				}
 		     	
 		    }else{
 		    	
 		    	$('#birth_check').text(''); 
-		    	birthCK = true;
+				inval_Arr[4] = true;			
 			}//end of if
 			
 		}else{
@@ -131,6 +177,10 @@
 		}
 	});
 
+
+
+
+	
 	$(document).on('click', '#searchBtn', function(e){
 
 		e.preventDefault();

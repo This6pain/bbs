@@ -23,5 +23,7 @@ public interface UserService {
 	public String getNick(int b_writer);
 
 	public List<UserDTO> getAllUser();
+
+	public int userIdCheck(String user_id);
 	
 }
