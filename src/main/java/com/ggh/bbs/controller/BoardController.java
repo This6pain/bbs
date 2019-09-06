@@ -52,7 +52,7 @@ public class BoardController {
 		
 		mav.addObject("boardList", boardList);
 		mav.addObject("userList", userList);
-//		mav.addObject("pageMaker", maker);
+		mav.addObject("search", search);
 		mav.addObject("pageMaker", maker);
 		mav.setViewName("test");
 		
@@ -74,35 +74,38 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "deleteBoard")
-	public ModelAndView deleteBoard(@RequestParam(value="b_id") int b_id, HttpSession session) {
+	public ModelAndView deleteBoard(@ModelAttribute("search")Search search, @RequestParam(value="b_id") int b_id, HttpSession session) {
 		
 		boardService.boardDelete(b_id);
 		
 		ModelAndView mav = new ModelAndView("redirect:/");
-		
+		mav.addObject("search", search);
+
 		return mav;				
 
 	}
 	
 	@RequestMapping(value = "updateBoard", method = RequestMethod.POST)
-	public ModelAndView updateBoard(BoardDTO updateBoard) {
+	public ModelAndView updateBoard(@ModelAttribute("search")Search search, BoardDTO updateBoard) {
 		
 		boardService.boardUpdate(updateBoard);
 						
 		ModelAndView mav = new ModelAndView("redirect:/");
+		mav.addObject("search", search);
 
 		return mav;				
 
 	}
 	
 	@RequestMapping(value = "boardView")
-	public ModelAndView boardView(@RequestParam(value="b_id") int b_id) {
+	public ModelAndView boardView(@ModelAttribute("search")Search search, @RequestParam(value="b_id") int b_id) {
 		
 		BoardDTO boardView = boardService.boardView(b_id);
 		boardService.updateHit(b_id);
 		
 		ModelAndView mav = new ModelAndView("boardDetail");
 		mav.addObject("boardView", boardView);
+		mav.addObject("search", search);
 
 		return mav;				
 

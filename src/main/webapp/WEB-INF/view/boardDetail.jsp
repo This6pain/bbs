@@ -23,7 +23,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 			    	</button>
-			    	<a class="navbar-brand" href="#">Simple BBS</a>
+			    	<a class="navbar-brand" href='<c:url value="/"/>'>Simple BBS</a>
 				</div>
 			 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -103,7 +103,7 @@
 						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#boardDeleteModal">削除</button>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#boardUpdateModal">修正</button>
 					</c:if>
-					<button type="button" class="btn btn-default" onclick="location.href='/'">目録</button>
+					<a type="button" class="btn btn-default" href='<c:url value="/?page=${search.page }&searchType=${search.searchType}&keyword=${search.keyword}"/>'>目録</a>
 				</div>
 			</div>
 			<hr>

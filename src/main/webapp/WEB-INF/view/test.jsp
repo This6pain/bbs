@@ -23,7 +23,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 			    	</button>
-			    	<a class="navbar-brand" href="#">Simple BBS</a>
+			    	<a class="navbar-brand" href='<c:url value="/"/>'>Simple BBS</a>
 				</div>
 			 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -93,7 +93,7 @@
 											${board.b_id}
 										</td>
 										<td width="55%">
-											<a href='<c:url value='/boardView?b_id=${board.b_id }'/>'>${board.b_title}</a>
+											<a href='<c:url value='/boardView?b_id=${board.b_id }&page=${search.page }&searchType=${search.searchType}&keyword=${search.keyword}'/>'>${board.b_title}</a>
 										</td>
 										<td width="15%">
  											${board.b_nick}											
@@ -123,11 +123,14 @@
 							<option value="all">題目+内容</option>		
 						</select>		
 					</div>		
-					<div class="form-group w300" style="padding-right:10px; width: 30%">		
+					<div class="form-group " >		
 						<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">		
 					</div>
 					<div class="form-group">
-						<button class="btn btn-sm btn-primary" name="searchBtn" id="searchBtn">検索</button>		
+						<button class="btn btn-sm btn-primary" name="searchBtn" id="searchBtn">検索</button>
+					</div>	
+					<div class="form-group">
+						<a class="btn btn-sm btn-primary" href='<c:url value="/"/>'>目録</a>		
 					</div>		
 				</div>
 			
@@ -140,7 +143,7 @@
 					    </c:if>
 					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 						    <li>
-						        <a href='<c:url value="/?page=${idx }"/>'><i class="fa">${idx }</i></a>
+						        <a href='<c:url value="/?page=${idx }&searchType=${search.searchType}&keyword=${search.keyword}"/>'><i class="fa">${idx }</i></a>
 						    </li>
 					    </c:forEach>
 					    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
