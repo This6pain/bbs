@@ -12,7 +12,7 @@
 	
 	var pwCK = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 
 
-	var kanziCK = /[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+[々〆〤]+$/;
+	var kanziCK = /[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+$/;
 
 	var kanaCK =　/^[ぁ-んァ-ン]+$/;
 
@@ -67,10 +67,17 @@
 
 
 	$("#user_pw").blur(function() {
+		var user_pw = $('#user_pw').val();
+		
 		if (pwCK.test($(this).val())) {
 				console.log(pwCK.test($(this).val()));
 				$("#pw_check").text('');
 				joinCK[1] = true;			
+		} else if(user_pw == ""){
+			
+			$('#pw_check').text('入力してください');
+			$('#pw_check').css('color', 'red');
+			joinCK[1] = false;			
 		} else {
 			$('#pw_check').text('有効な形式ではありません。');
 			$('#pw_check').css('color', 'red');
@@ -79,6 +86,8 @@
 	});
 
 	$("#user_pw2").blur(function() {
+		var user_pw2 = $('#user_pw2').val();
+		
 		if (pwCK.test($(this).val())) {
 			if($(this).val()==$("#user_pw").val()){
 				$("#pw2_check").text('');
@@ -88,6 +97,11 @@
 				$('#pw2_check').css('color', 'red');
 				joinCK[2] = false;			
 			}
+		} else if(user_pw2 == ""){
+			
+			$('#pw2_check').text('入力してください');
+			$('#pw2_check').css('color', 'red');
+			joinCK[2] = false;			
 		} else {
 			$('#pw2_check').text('有効な形式ではありません。');
 			$('#pw2_check').css('color', 'red');
@@ -96,23 +110,52 @@
 	
 	});
 
-	$("#user_kanziname").blur(function() {
+	$("#user_kanjiname").blur(function() {
+
+		var user_kanjiname = $('#user_kanjiname').val();
+		
 		if (kanziCK.test($(this).val())) {
 				console.log(kanziCK.test($(this).val()));
-				$("#kanziname_check").text('');
+				$("#kanjiname_check").text('');
 				joinCK[3] = true;			
-		} else {
-			$('#kanziname_check').text('名前を確認してください');
-			$('#kanziname_check').css('color', 'red');
+		} else if(user_kanjiname == ""){
+			
+			$('#kanjiname_check').text('入力してください');
+			$('#kanjiname_check').css('color', 'red');
 			joinCK[3] = false;			
+		} else {
+			$('#kanjiname_check').text('名前を確認してください');
+			$('#kanjiname_check').css('color', 'red');
+			joinCK[3] = false;			
+		}
+	});
+
+	$("#user_nickname").blur(function() {
+		var user_nickname = $('#user_nickname').val();
+
+		joinCK[0] = true;			
+		
+		if(user_nickname == ""){
+			
+			$('#nickname_check').text('入力してください');
+			$('#nickname_check').css('color', 'red');
+			joinCK[0] = false;			
 		}
 	});
 	
 	$("#user_kananame").blur(function() {
+
+		var user_kananame = $('#user_kananame').val();
+		
 		if (kanaCK.test($(this).val())) {
 				console.log(kanaCK.test($(this).val()));
 				$("#kananame_check").text('');
 				joinCK[4] = true;			
+		} else if(user_kananame == ""){
+			
+			$('#user_kananame').text('入力してください');
+			$('#user_kananame').css('color', 'red');
+			joinCK[4] = false;			
 		} else {
 			$('#kananame_check').text('名前を確認してください');
 			$('#kananame_check').css('color', 'red');

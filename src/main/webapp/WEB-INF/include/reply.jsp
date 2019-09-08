@@ -4,16 +4,17 @@
 <html>
 <head>
 <script>
-$(document).ready(function(){
-
-	replyList();
-
-	$('#insertBtn').click(function(){ 
-		var insertData = $('#insertComment').serialize();
-		insertComment(insertData);
+	$(document).ready(function(){
+	
+		replyList();
+	
+		$('#insertBtn').click(function(){ 
+			var insertData = $('#insertComment').serialize();
+			insertComment(insertData);
+		});
+		
 	});
 	
-});
 	function replyList(){
 
 		var paramData = {"b_id" : "${boardView.b_id}"};

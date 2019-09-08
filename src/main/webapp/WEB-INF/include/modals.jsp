@@ -85,7 +85,7 @@
 							<div class="form-group">
 								<label for="user_name" style="color: white">名前（漢字）</label>
 									<input type="text" class="form-control" id="user_kanjiname" name="u_kanjiname" placeholder="名前（漢字）" required>
-								<div class="check_font" id="kanziname_check"></div>								
+								<div class="check_font" id="kanjiname_check"></div>								
 							</div>
 							<div class="form-group">
 								<label for="user_name" style="color: white">名前（カタカナ）</label>
@@ -100,6 +100,7 @@
 							<div class="reg_button">
 								<!-- <input type="submit" value="加入" class="btn btn-primary"　id="reg_submit" style="padding: 10px;">		 -->
 								<button class="btn btn-primary" id="reg_btn" style="padding: 10px;" >加入</button>		
+								<input type="reset" value="Reset" class="btn btn-danger" style="padding: 10px;">
 							</div>							
 						</form>
 					</div>
@@ -252,7 +253,7 @@
 			</div>
 		</div>
 		
-		<!-- Modal Board-UpdatePassword -->
+		<!-- Modal Board-Update -->
 		<div class="modal fade" id="boardUpdateModal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content card" style="width: 80%; height: 80%;">
@@ -264,7 +265,7 @@
 							<div class="form-group" >
 								<label for="user_id" style="color: white">題目</label>
 									<input type="hidden" value="${boardView.b_id }" name="b_id">
-									<input type="text" class="form-control" id="board_title" name="b_title" placeholder="${boardView.b_title }" required>
+									<input type="text" class="form-control" id="board_title" name="b_title" placeholder="${boardView.b_title }" value="${boardView.b_title }" required>
 								<div class="check_font" id="id_check"></div>			
 							</div>
 							<div class="form-group">
