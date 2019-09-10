@@ -62,12 +62,12 @@
 				<div class="col-sm-5" style="text-align: left; padding-left: 20px;">
 					No : ${boardView.b_id}										
 				</div>
-				<div class="col-sm-2" style="text-align: center;; padding-left: 15px;">
+				<div class="col-sm-2" style="text-align: center; padding-left: 15px;">
 					Writer : ${boardView.b_nick}
 				</div>
-				<div class="col-sm-3" style="text-align: right; padding-right: 20px;">
-					<%-- <fmt:parseDate value='${boardView.b_createdate}' var='regdate' pattern='yyyy-MM-dd HH:mm:ss'/> --%>
-					Date : -<%-- <fmt:formatDate value="${regdate}" pattern="yyyy-MM-dd HH:mm:ss" /> --%>
+				<div class="col-sm-3 float-right" style="text-align: right; padding-right: 20px; float: right;">					
+					<c:set var = "boardDate" value = "${boardView.b_createdate}"/>
+					Date : <fmt:formatDate value = "${boardDate}" pattern ="yyyy-MM-dd HH:mm:ss"/>
 				</div>
 			</div>
 			<div class="row">

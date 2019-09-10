@@ -101,6 +101,7 @@ public class BoardController {
 	public ModelAndView boardView(@ModelAttribute("search")Search search, @RequestParam(value="b_id") int b_id) {
 		
 		BoardDTO boardView = boardService.boardView(b_id);
+		boardView.setB_content(boardView.getB_content().replaceAll("\r\n", "<br>"));
 		boardService.updateHit(b_id);
 		int nextNum = boardService.nextBoard(b_id, search);
 		int prevNum = boardService.prevBoard(b_id, search);

@@ -54,25 +54,23 @@
 		
 		<div class="container">
 			<div class = "row">
-				<c:if test="${loginUser != null }">
-					<a class="nav-link" data-toggle="modal" data-target="#writeModal">write</a>
-				</c:if>
+				
 				<table class="table">
 					<thead>
-						<tr>
-							<th width="10%">
+						<tr >
+							<th width="5%" style="text-align: center;">
 								No
 							</th>
 							<th width="60%">
 								Title
 							</th>
-							<th width="10%">
+							<th width="10%" style="text-align: center;">
 								writer
 							</th>
-							<th width="10%">
+							<th width="20%" style="text-align: center;">
 								Date
 							</th>
-							<th width="10%">
+							<th width="5%" style="text-align: center;">
 								Hit
 							</th>
 						</tr>
@@ -92,19 +90,17 @@
 										<td width="5%">
 											${board.b_id}
 										</td>
-										<td width="55%">
+										<td width="60%" style="text-align: left;;">
 											<a href='<c:url value='/boardView?b_id=${board.b_id }&page=${search.page }&searchType=${search.searchType}&keyword=${search.keyword}'/>'>${board.b_title}</a>
 										</td>
-										<td width="15%">
+										<td width="10%">
  											${board.b_nick}											
 										</td>
-										<td width="20%">--
-<%--											<fmt:parseDate value='${board.b_createdate}' var='regdate' pattern='EEE MMM dd HH:mm:ss zzz yyyy'/>	
- 											<fmt:formatDate value="${regdate}" pattern="EEE MMM dd HH:mm:ss zzz yyyy"/>									
-											<fmt:parseDate value='${board.b_createdate}' var='regdate2' pattern='yyyy-MM-dd HH:mm:ss'/> 
-											<fmt:formatDate value="${regdate}" pattern="yyyy-MM-dd HH:mm:ss.S" type="both"/>--%>
+										<td width="20%" style="text-align: center;">
+											<c:set var = "boardDate" value = "${board.b_createdate}"/>
+											<fmt:formatDate value = "${boardDate}" pattern ="yyyy-MM-dd HH:mm:ss"/>
 										</td>
-										<td width="5%">
+										<td width="5%" style="text-align: center;">
 											${board.b_hit}
 										</td>
 									</tr>
@@ -131,7 +127,13 @@
 					</div>	
 					<div class="form-group">
 						<a class="btn btn-sm btn-primary" href='<c:url value="/"/>'>目録</a>		
-					</div>		
+					</div>
+					<div class="form-group">
+						<c:if test="${loginUser != null }">
+							<a class="btn btn-sm btn-info" data-toggle="modal" data-target="#writeModal">write</a>
+						</c:if>		
+					</div>
+						
 				</div>
 			
 				<div class="float-right " style="float: right;">
