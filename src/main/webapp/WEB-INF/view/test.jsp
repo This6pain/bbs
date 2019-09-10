@@ -97,8 +97,20 @@
  											${board.b_nick}											
 										</td>
 										<td width="20%" style="text-align: center;">
-											<c:set var = "boardDate" value = "${board.b_createdate}"/>
-											<fmt:formatDate value = "${boardDate}" pattern ="yyyy-MM-dd HH:mm:ss"/>
+											<jsp:useBean  id="today" class="java.util.Date"></jsp:useBean>
+											<fmt:parseNumber value="${today.time / (1000 * 60 * 60 * 24)}" var="nowDays" integerOnly="true" />
+											<fmt:parseNumber value="${board.b_createdate.time / (1000 * 60 * 60 * 24)}" var="regDays" integerOnly="true"/>
+											<c:set value="${nowDays - regDays }" var="dayDiff" />
+											<c:choose>
+												<c:when test="${dayDiff == 0 }">										
+													<fmt:formatDate value="${board.b_createdate }" pattern="HH:mm:ss"/>											
+												</c:when>											
+											    <c:otherwise>											
+											        <fmt:formatDate value="${board.b_createdate }" pattern="yyyy.MM.dd"/>											
+											    </c:otherwise>											
+											  </c:choose>
+<%-- 											<c:set var = "boardDate" value = "${board.b_createdate}"/>
+											<fmt:formatDate value = "${boardDate}" pattern ="yyyy-MM-dd HH:mm:ss"/> --%>
 										</td>
 										<td width="5%" style="text-align: center;">
 											${board.b_hit}
