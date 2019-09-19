@@ -25,6 +25,7 @@ import com.ggh.bbs.service.ReplyService;
 import com.ggh.bbs.service.UserService;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 public class BoardController {
@@ -194,13 +195,16 @@ public class BoardController {
 		
 		BoardDTO boardView = boardService.boardView(b_id);
 		BoardDetailJSON json = new BoardDetailJSON(boardView);
+		json.setReply(replyService.commentList(b_id));
+		System.out.println(json.getReply());
+		JSONObject jsonObject = JSONObject.fromObject(json);
 		
 		boardView.setB_content(boardView.getB_content().replaceAll("\r\n", "<br>"));
 		boardService.updateHit(b_id);
 //		int nextNum = boardService.nextBoard(b_id, search);
 //		int prevNum = boardService.prevBoard(b_id, search);
-		ModelAndView mav = new ModelAndView("boardDetail");
-		mav.addObject("boardView", boardView);
+		ModelAndView mav = new ModelAndView("detail");
+		mav.addObject("boardJSONView", jsonObject);
 		mav.addObject("search", search);
 //		mav.addObject("prevNum", prevNum);
 //		mav.addObject("nextNum", nextNum);

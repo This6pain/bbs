@@ -58,8 +58,6 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int boardCnt(Search search) {
 		// TODO 自動生成されたメソッド・スタブ
-		System.out.println(search.getBeginDate());
-		System.out.println(search.getEndDate());
 		return boardMapper.boardCnt(search);
 	}
 

@@ -60,20 +60,21 @@
 					</h3>				
 				</div>
 				<div class="col-sm-5" style="text-align: left; padding-left: 20px;">
-					No : ${boardView.b_id}										
+					No : ${boardJSONView.idx}										
 				</div>
 				<div class="col-sm-2" style="text-align: center; padding-left: 15px;">
-					Writer : ${boardView.b_nick}
+					Writer : ${boardJSONView.writer}
 				</div>
 				<div class="col-sm-3 float-right" style="text-align: right; padding-right: 20px; float: right;">					
-					<c:set var = "boardDate" value = "${boardView.b_createdate}"/>
-					Date : <fmt:formatDate value = "${boardDate}" pattern ="yyyy-MM-dd HH:mm:ss"/>
+					<%-- <c:set var = "boardDate" value = "${boardView.b_createdate}"/>
+					Date : <fmt:formatDate value = "${boardDate}" pattern ="yyyy-MM-dd HH:mm:ss"/> --%>
+					Date : ${boardJSONView.date }
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-12" align="left" style="padding-left: 10px; padding-right: 10px;">
 					<hr> 
-						${boardView.b_content}
+						${boardJSONView}
 					<hr>
 				</div>
 			</div>			
@@ -96,7 +97,7 @@
 				        <c:if test="${loginUser.u_no != null}">
 				        <form name="insertComment" id="insertComment" method="post">
 				            <div class="input-group">
-				               <input type="hidden" name="r_board" value="${boardView.b_id}"/>
+				               <input type="hidden" name="r_board" value="${boardJSONView.idx}"/>
 				               <input type="hidden" name="r_writer" value="${loginUser.u_no }">
 				               <input type="text" class="form-control" id="content" name="r_content" placeholder="内容を入力してください">
 				               <span class="input-group-btn">

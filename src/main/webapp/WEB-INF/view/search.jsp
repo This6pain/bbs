@@ -121,7 +121,7 @@
 								<c:forEach items="${boardList }" var="list" >
 									<tr>
 										<td colspan="5" align="center" style="font-family: sans-serif;">
-											<a href='<c:url value='/api/detail?b_id=${board.b_id }&page=${search.page }&biginDate=${search.beginDate}&endDate=${search.endDate}&title=${search.title}&content=${search.content}'/>'>${list }</a>
+											<a href='<c:url value='/api/detail?b_id=${list.idx }&page=${search.page }&biginDate=${search.beginDate}&endDate=${search.endDate}&title=${search.title}&content=${search.content}'/>'>${list }</a>
 										</td>
 									</tr>									
 								</c:forEach> 							

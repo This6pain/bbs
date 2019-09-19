@@ -49,22 +49,30 @@
 			</if>
 			<if test="title != '' and title != null and content != null and content != '' ">
 				AND b_title like CONCAT('%', #{title}, '%') OR b_content like CONCAT('%', #{content}, '%')
-			</if> -->	
+			</if>	
 			
+			WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate})
 			<choose>
-				<when test="title != '' and title != null and content == null and content == '' ">
-					WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate}) AND b_title like CONCAT('%', #{title}, '%')
+				<when test="title != null and content == null">
+					and b_title like CONCAT('%', #{title}, '%')
 				</when>
-				<when test="title == '' and title == null and content != null and content != '' ">
-					WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate}) AND b_content like CONCAT('%', #{content}, '%')
+				<when test="title == null and content != null">
+					and b_content like CONCAT('%', #{content}, '%')
 				</when>
-				<when test="title != '' and title != null and content != null and content != '' ">
-					WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate}) AND b_title like CONCAT('%', #{title}, '%') OR b_content like CONCAT('%', #{content}, '%')
+				<when test="title != null and content != null">
+					and b_title like CONCAT('%', #{title}, '%') or b_content like CONCAT('%', #{content}, '%')
 				</when>
-				<otherwise>
-					WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate}) 
-				</otherwise>
-			</choose>
+			</choose> -->
+			WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate})
+				<if test="title != '' and title != null">
+					AND b_title like CONCAT('%', #{title}, '%')
+					<if test="content != null and content != '' ">
+						OR b_content like CONCAT('%', #{content}, '%')
+					</if>
+				</if>
+				<if test="content != null and content != '' ">
+					AND b_content like CONCAT('%', #{content}, '%')
+				</if>
     </select>
   	
  	<select id = "boardView" parameterType="int" resultType="com.ggh.bbs.dto.BoardDTO">
@@ -103,32 +111,30 @@
 				</if>
 			</trim>  -->       
 			<!--
+				
 			WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate})
-			<if test="title != '' and title != null and content == null and content == '' ">
-				AND b_title like CONCAT('%', #{title}, '%')
-			</if>
-			<if test="title == '' and title == null and content != null and content != '' ">
-				AND b_content like CONCAT('%', #{content}, '%')
-			</if>
-			<if test="title != '' and title != null and content != null and content != '' ">
-				AND b_title like CONCAT('%', #{title}, '%') OR b_content like CONCAT('%', #{content}, '%')
-			</if> -->	
-			
 			<choose>
-				<when test="title != '' and title != null and content == null and content == '' ">
-					WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate}) AND b_title like CONCAT('%', #{title}, '%')
+				<when test="title != null and content == null">
+					and b_title like CONCAT('%', #{title}, '%')
 				</when>
-				<when test="title == '' and title == null and content != null and content != '' ">
-					WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate}) AND b_content like CONCAT('%', #{content}, '%')
+				<when test="title == null and content != null">
+					and b_content like CONCAT('%', #{content}, '%')
 				</when>
-				<when test="title != '' and title != null and content != null and content != '' ">
-					WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate}) AND b_title like CONCAT('%', #{title}, '%') OR b_content like CONCAT('%', #{content}, '%')
+				<when test="title != null and content != null">
+					and b_title like CONCAT('%', #{title}, '%') or b_content like CONCAT('%', #{content}, '%')
 				</when>
-				<otherwise>
-					WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate}) 
-				</otherwise>
-			</choose>
-			
+			</choose>-->
+			WHERE (b_createdate BETWEEN #{beginDate} AND #{endDate})
+				<if test="title != '' and title != null">
+					AND b_title like CONCAT('%', #{title}, '%')
+					<if test="content != null and content != '' ">
+						OR b_content like CONCAT('%', #{content}, '%')
+					</if>
+				</if>
+				<if test="content != null and content != '' ">
+					AND b_content like CONCAT('%', #{content}, '%')
+				</if>
+
 		ORDER BY b_id DESC LIMIT #{pageStart}, #{perPageNum}	
 	</select>
  	
