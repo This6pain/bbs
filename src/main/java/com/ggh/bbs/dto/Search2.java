@@ -1,28 +1,9 @@
 package com.ggh.bbs.dto;
 
-public class Search extends Page{
+public class Search2 extends Page{
 
-//	private String searchType;
-//	private String keyword;	
-//	
-//	public String getSearchType() {
-//		return searchType;
-//	}
-//
-//	public void setSearchType(String searchType) {
-//		this.searchType = searchType;
-//	}
-//
-//	public String getKeyword() {
-//		return keyword;
-//	}
-//
-//	public void setKeyword(String keyword) {
-//		this.keyword = keyword;
-//	}
-
-	private String beginDate = "1990-01-01";
-	private String endDate = "2222-01-01";	
+	private String beginDate;
+	private String endDate;	
 	private String title;
 	private String content;	
 	
@@ -57,4 +38,5 @@ public class Search extends Page{
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
+
 }

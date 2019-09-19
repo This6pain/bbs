@@ -91,7 +91,8 @@
 											${board.b_id}
 										</td>
 										<td width="60%" style="text-align: left;;">
-											<a href='<c:url value='/boardView?b_id=${board.b_id }&page=${search.page }&biginDate=${search.beginDate}&endDate=${search.endDate}&title=${search.title}&content=${search.content}'/>'>${board.b_title}</a>
+											<%-- <a href='<c:url value='/boardView?b_id=${board.b_id }&page=${search.page }&searchType=${search.searchType}&keyword=${search.keyword}'/>'>${board.b_title}</a> --%>
+											${board.b_title}
 										</td>
 										<td width="10%">
  											${board.b_nick}											
@@ -132,10 +133,10 @@
 						</select>		
 					</div> -->		
 					<div class="form-group " >		
-						<input type="text" class="form-control form-control-sm" name="beginDate" id="beginDate" placeholder="bigin(1990-01-01)" value="${search.beginDate }">		
+						<input type="text" class="form-control form-control-sm" name="beginDate" id="beginDate" placeholder="bigin(1990-01-01)">		
 					</div>
 					<div class="form-group " >		
-						<input type="text" class="form-control form-control-sm" name="endDate" id="endDate" placeholder="endDate" value="${search.endDate }">	
+						<input type="text" class="form-control form-control-sm" name="endDate" id="endDate" placeholder="endDate">		
 					</div>
 					<div class="form-group " >		
 						<input type="text" class="form-control form-control-sm" name="title" id="title" placeholder="title">		

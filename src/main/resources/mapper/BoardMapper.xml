@@ -9,7 +9,7 @@
  		 VALUES(#{b_title}, #{b_content}, #{b_writer}, #{b_nick})
  	</insert>
   	
-  	<select id = "boardCnt" resultType="int" parameterType="com.ggh.bbs.dto.Search">
+ <!--  	<select id = "boardCnt" resultType="int" parameterType="com.ggh.bbs.dto.Search">
         SELECT count(*) FROM ggh_bbs.board
         	<trim prefix="WHERE" prefixOverrides="AND|OR">
 				<if test="searchType=='title' and keyword != null and keyword != '' ">
@@ -22,13 +22,27 @@
 					AND b_title like CONCAT('%', #{keyword}, '%') OR b_content like CONCAT('%', #{keyword}, '%')
 				</if>	
 			</trim>
+    </select> -->
+  	
+  	<select id = "boardCnt" resultType="int" parameterType="com.ggh.bbs.dto.Search">
+        SELECT count(*) FROM ggh_bbs.board WHERE b_createdate BETWEEN #{beginDate} AND #{endDate}
+			        
+			<if test="title != '' and title != null and content == null and content == '' ">
+				AND b_title like CONCAT('%', #{title}, '%')
+			</if>
+			<if test="title == '' and title == null and content != null and content != '' ">
+				AND b_content like CONCAT('%', #{content}, '%')
+			</if>
+			<if test="title != '' and title != null and content != null and content != '' ">
+				AND b_title like CONCAT('%', #{title}, '%') OR b_content like CONCAT('%', #{content}, '%')
+			</if>	
     </select>
   	
  	<select id = "boardView" parameterType="int" resultType="com.ggh.bbs.dto.BoardDTO">
         SELECT * FROM ggh_bbs.board WHERE b_id = #{b_id}
     </select>
     
-	<select id="boardList" resultType="com.ggh.bbs.dto.BoardDTO" parameterType="com.ggh.bbs.dto.Search">
+<!-- 	<select id="boardList" resultType="com.ggh.bbs.dto.BoardDTO" parameterType="com.ggh.bbs.dto.Search">
 		SELECT * FROM ggh_bbs.board
 			<trim prefix="WHERE" prefixOverrides="AND|OR">
 				<if test="searchType=='title' and keyword != null and keyword != '' ">
@@ -41,6 +55,22 @@
 					AND b_title like CONCAT('%', #{keyword}, '%') OR b_content like CONCAT('%', #{keyword}, '%')
 				</if>	
 			</trim>
+		ORDER BY b_id DESC LIMIT #{pageStart}, #{perPageNum}	
+	</select>
+ -->	
+	<select id="boardList" resultType="com.ggh.bbs.dto.BoardDTO" parameterType="com.ggh.bbs.dto.Search">
+		SELECT * FROM ggh_bbs.board WHERE b_createdate BETWEEN #{beginDate} AND #{endDate}
+        	
+			<if test="title != '' and title != null and content == null and content == '' ">
+				AND b_title like CONCAT('%', #{title}, '%')
+			</if>
+			<if test="title == '' and title == null and content != null and content != '' ">
+				AND b_content like CONCAT('%', #{content}, '%')
+			</if>
+			<if test="title != '' and title != null and content != null and content != '' ">
+				AND b_title like CONCAT('%', #{title}, '%') OR b_content like CONCAT('%', #{content}, '%')
+			</if>	
+
 		ORDER BY b_id DESC LIMIT #{pageStart}, #{perPageNum}	
 	</select>
  	

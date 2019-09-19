@@ -14,4 +14,5 @@ public interface ReplyService {
 
 	public int updateComment(ReplyDTO reply);
 
+	public int commentCnt(int b_id);
 }

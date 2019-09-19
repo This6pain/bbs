@@ -42,4 +42,10 @@ public class ReplyServiceImpl implements ReplyService{
 
 	}
 
+	@Override
+	public int commentCnt(int b_id) {
+		// TODO 自動生成されたメソッド・スタブ
+		return replyMapper.commentCnt(b_id);
+	}
+
 }

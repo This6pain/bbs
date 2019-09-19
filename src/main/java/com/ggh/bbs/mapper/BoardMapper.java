@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.ggh.bbs.dto.BoardDTO;
 import com.ggh.bbs.dto.Search;
+import com.ggh.bbs.dto.Search2;
 
 @Mapper
 public interface BoardMapper {
@@ -28,4 +29,5 @@ public interface BoardMapper {
 	public int nextBoard(@Param("b_id")int b_id, @Param("searchType")String searchType, @Param("keyword")String keyword);
 
 	public int prevBoard(@Param("b_id")int b_id, @Param("searchType")String searchType, @Param("keyword")String keyword);
+
 }

@@ -240,11 +240,21 @@
 
 		e.preventDefault();
 
-		var url = "${pageContext.request.contextPath}/";
+/*		var url = "${pageContext.request.contextPath}/";
 
-		url = url + "?searchType=" + $('#searchType').val();
+ 		url = url + "?searchType=" + $('#searchType').val();
 
-		url = url + "&keyword=" + $('#keyword').val();
+		url = url + "&keyword=" + $('#keyword').val(); */
+
+		var url = "${pageContext.request.contextPath}/api/search";
+
+		url = url + "?beginDate=" + $('#beginDate').val();
+
+		url = url + "&endDate=" + $('#endDate').val();
+
+		url = url + "&title=" + encodeURI(encodeURIComponent($('#title').val()));
+
+		url = url + "&content=" + encodeURI(encodeURIComponent($('#content').val()));
 
 		location.href = url;
 

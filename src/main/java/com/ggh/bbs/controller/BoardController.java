@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ggh.bbs.dto.BoardDTO;
 import com.ggh.bbs.dto.PageMake;
 import com.ggh.bbs.dto.Search;
+import com.ggh.bbs.dto.Search2;
 import com.ggh.bbs.dto.UserDTO;
 import com.ggh.bbs.service.BoardService;
 import com.ggh.bbs.service.UserService;
@@ -31,14 +32,12 @@ public class BoardController {
 	@RequestMapping("/")
 	public ModelAndView Main(@ModelAttribute("search")Search search){
 		
-		List<UserDTO> userList = userService.getAllUser();
+//		List<UserDTO> userList = userService.getAllUser();
 		
-		System.out.println(userList.get(0).getU_no());
 		ModelAndView mav = new ModelAndView();
 		
-		//search
-
-		//Paging
+		System.out.println(search.getBeginDate());
+		System.out.println(search.getEndDate());
 
 		PageMake maker = new PageMake();
 		maker.setPage(search);
@@ -51,10 +50,38 @@ public class BoardController {
 		System.out.println("startPage="+maker.getStartPage());
 		
 		mav.addObject("boardList", boardList);
-		mav.addObject("userList", userList);
+//		mav.addObject("userList", userList);
 		mav.addObject("search", search);
 		mav.addObject("pageMaker", maker);
 		mav.setViewName("test");
+		
+		return mav;
+	}
+	
+	/*******************API*********************/
+	
+	@RequestMapping(value = "api/search", method = RequestMethod.GET)
+	public ModelAndView Search(@ModelAttribute("search")Search search){
+		
+		
+		ModelAndView mav = new ModelAndView();
+
+		System.out.println(search.getBeginDate());
+		System.out.println(search.getEndDate());
+		PageMake maker = new PageMake();
+		maker.setPage(search);
+	    maker.setTotalCount(boardService.boardCnt(search));
+		
+		List<BoardDTO> boardList = boardService.boardList(search);
+
+		System.out.println("endPage="+maker.getEndPage());
+		System.out.println("displayPageNum="+maker.getDisplayPageNum());
+		System.out.println("startPage="+maker.getStartPage());
+		
+		mav.addObject("boardList", boardList);
+		mav.addObject("search", search);
+		mav.addObject("pageMaker", maker);
+		mav.setViewName("search");
 		
 		return mav;
 	}
@@ -103,13 +130,31 @@ public class BoardController {
 		BoardDTO boardView = boardService.boardView(b_id);
 		boardView.setB_content(boardView.getB_content().replaceAll("\r\n", "<br>"));
 		boardService.updateHit(b_id);
-		int nextNum = boardService.nextBoard(b_id, search);
-		int prevNum = boardService.prevBoard(b_id, search);
+//		int nextNum = boardService.nextBoard(b_id, search);
+//		int prevNum = boardService.prevBoard(b_id, search);
 		ModelAndView mav = new ModelAndView("boardDetail");
 		mav.addObject("boardView", boardView);
 		mav.addObject("search", search);
-		mav.addObject("prevNum", prevNum);
-		mav.addObject("nextNum", nextNum);
+//		mav.addObject("prevNum", prevNum);
+//		mav.addObject("nextNum", nextNum);
+
+		return mav;				
+
+	}
+	
+	@RequestMapping(value = "api/detail", method = RequestMethod.GET)
+	public ModelAndView boardViews(@ModelAttribute("search")Search search, @RequestParam(value="b_id") int b_id) {
+		
+		BoardDTO boardView = boardService.boardView(b_id);
+		boardView.setB_content(boardView.getB_content().replaceAll("\r\n", "<br>"));
+		boardService.updateHit(b_id);
+//		int nextNum = boardService.nextBoard(b_id, search);
+//		int prevNum = boardService.prevBoard(b_id, search);
+		ModelAndView mav = new ModelAndView("boardDetail");
+		mav.addObject("boardView", boardView);
+		mav.addObject("search", search);
+//		mav.addObject("prevNum", prevNum);
+//		mav.addObject("nextNum", nextNum);
 
 		return mav;				
 

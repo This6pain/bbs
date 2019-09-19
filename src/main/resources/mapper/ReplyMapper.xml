@@ -21,4 +21,8 @@
 		UPDATE ggh_bbs.reply SET r_content = #{r_content} WHERE r_id = #{r_id}
 	</update>
  	
+ 	<select id="commentCnt" resultType="com.ggh.bbs.dto.ReplyDTO" parameterType="int">
+		SELECT count(*) FROM ggh_bbs.reply WHERE r_board = #{b_id}
+	</select>
+	
 </mapper> 

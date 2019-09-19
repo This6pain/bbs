@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ggh.bbs.dto.BoardDTO;
 import com.ggh.bbs.dto.Search;
+import com.ggh.bbs.dto.Search2;
 import com.ggh.bbs.mapper.BoardMapper;
 import com.ggh.bbs.service.BoardService;
 
@@ -57,9 +58,12 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int boardCnt(Search search) {
 		// TODO 自動生成されたメソッド・スタブ
+		System.out.println(search.getBeginDate());
+		System.out.println(search.getEndDate());
 		return boardMapper.boardCnt(search);
 	}
 
+/*
 	@Override
 	public int nextBoard(int b_id, Search search) {
 		// TODO 自動生成されたメソッド・スタブ
@@ -75,5 +79,7 @@ public class BoardServiceImpl implements BoardService{
 		String keyword = search.getKeyword();
 		return boardMapper.prevBoard(b_id, searchType, keyword);
 	}
+*/
+
 
 }

@@ -76,28 +76,7 @@
 						${boardView.b_content}
 					<hr>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-6" align="left">
-					<c:choose>
-						<c:when test="${prevNum == -1}">
-							<button type="button" class="btn btn-default disabled">Prev</button>
-						</c:when>
-						<c:otherwise>
-							<button type="button" class="btn btn-default"
-								onclick="location.href='<c:url value="/boardView?b_id=${prevNum }&page=${search.page }&biginDate=${search.beginDate}&endDate=${search.endDate}&title=${search.title}&content=${search.content}"/>'">Prev</button>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${nextNum == -1}">
-							<button type="button" class="btn btn-default disabled">Next</button>
-						</c:when>
-						<c:otherwise>
-							<button type="button" class="btn btn-default"
-								onclick="location.href='<c:url value="/boardView?b_id=${nextNum }&page=${search.page }&biginDate=${search.beginDate}&endDate=${search.endDate}&title=${search.title}&content=${search.content}"/>'">Next</button>
-						</c:otherwise>
-					</c:choose>
-				</div>
+			</div>			
 				<div class="col-sm-6" align="right">
 					<c:if test="${loginUser.u_no == boardView.b_writer}">
 						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#boardDeleteModal">削除</button>
