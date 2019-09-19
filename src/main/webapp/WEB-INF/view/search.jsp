@@ -85,13 +85,13 @@
 								</tr>
 							</c:when>
 							<c:otherwise>
-								<c:forEach var="board" items="${boardList}" varStatus="boardStatus">
+								<%-- <c:forEach var="board" items="${boardList}" varStatus="boardStatus">
 									<tr>
 										<td width="5%">
 											${board.b_id}
 										</td>
 										<td width="60%" style="text-align: left;;">
-											<%-- <a href='<c:url value='/boardView?b_id=${board.b_id }&page=${search.page }&searchType=${search.searchType}&keyword=${search.keyword}'/>'>${board.b_title}</a> --%>
+											<a href='<c:url value='/boardView?b_id=${board.b_id }&page=${search.page }&searchType=${search.searchType}&keyword=${search.keyword}'/>'>${board.b_title}</a>
 											${board.b_title}
 										</td>
 										<td width="10%">
@@ -110,14 +110,21 @@
 											        <fmt:formatDate value="${board.b_createdate }" pattern="yyyy.MM.dd"/>											
 											    </c:otherwise>											
 											  </c:choose>
-<%-- 											<c:set var = "boardDate" value = "${board.b_createdate}"/>
-											<fmt:formatDate value = "${boardDate}" pattern ="yyyy-MM-dd HH:mm:ss"/> --%>
+											<c:set var = "boardDate" value = "${board.b_createdate}"/>
+											<fmt:formatDate value = "${boardDate}" pattern ="yyyy-MM-dd HH:mm:ss"/>
 										</td>
 										<td width="5%" style="text-align: center;">
 											${board.b_hit}
 										</td>
 									</tr>
-								</c:forEach>								
+								</c:forEach>	 --%>
+								<c:forEach items="${boardList }" var="list" >
+									<tr>
+										<td colspan="5" align="center" style="font-family: sans-serif;">
+											<a href='<c:url value='/api/detail?b_id=${board.b_id }&page=${search.page }&biginDate=${search.beginDate}&endDate=${search.endDate}&title=${search.title}&content=${search.content}'/>'>${list }</a>
+										</td>
+									</tr>									
+								</c:forEach> 							
 							</c:otherwise>
 						</c:choose>	
 					</tbody>					
@@ -162,17 +169,17 @@
 					<ul class="btn-group pagination">
 					    <c:if test="${pageMaker.prev }">
 						    <li>
-						        <a href='<c:url value="/?page=${pageMaker.startPage-1 }"/>'>Prev</a>
+						        <a href='<c:url value="/api/search?page=${pageMaker.startPage-1 }"/>'>Prev</a>
 						    </li>
 					    </c:if>
 					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageIdx">
 						    <li>
-						        <a href='<c:url value="/?page=${pageIdx }&biginDate=${search.beginDate}&endDate=${search.endDate}&title=${search.title}&content=${search.content}"/>'><i class="fa">${pageIdx }</i></a>
+						        <a href='<c:url value="/api/search?page=${pageIdx }&biginDate=${search.beginDate}&endDate=${search.endDate}&title=${search.title}&content=${search.content}"/>'><i class="fa">${pageIdx }</i></a>
 						    </li>
 					    </c:forEach>
 					    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 						    <li>
-						        <a href='<c:url value="/?page=${pageMaker.endPage+1 }"/>'>Next</a>
+						        <a href='<c:url value="/api/search?page=${pageMaker.endPage+1 }"/>'>Next</a>
 						    </li>
 					    </c:if>
 					</ul>
