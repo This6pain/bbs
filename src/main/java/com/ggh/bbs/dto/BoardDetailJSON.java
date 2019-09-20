@@ -86,6 +86,7 @@ public class BoardDetailJSON {
 
 	public void setReply(List<ReplyDTO> replyList) {
 		
+		reply = new int[replyList.size()];
 		for(int i = 0; i<replyList.size(); i++) {
 			reply[i] = replyList.get(i).getR_id();
 		}

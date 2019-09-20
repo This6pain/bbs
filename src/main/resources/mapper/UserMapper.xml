@@ -22,7 +22,7 @@
     	SELECT * FROM ggh_bbs.user
     </select>
     
- 	<select id = "logincheck" parameterType="com.ggh.bbs.dto.LoginInfoDTO" resultType="int">
+ 	<select id = "loginCheck" parameterType="com.ggh.bbs.dto.LoginInfoDTO" resultType="int">
         SELECT count(*) FROM ggh_bbs.user WHERE u_id = #{login_id} AND  u_pass = #{login_pass}
     </select>
 

@@ -25,5 +25,8 @@ public interface UserService {
 	public List<UserDTO> getAllUser();
 
 	public int userIdCheck(String user_id);
+
+	public int loginCheck(LoginInfoDTO loginInfoDTO);
+
 	
 }

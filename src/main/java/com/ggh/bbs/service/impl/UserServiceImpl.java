@@ -72,4 +72,10 @@ public class UserServiceImpl implements UserService {
 		return userMapper.userIdCheck(user_id);
 	}
 
+	@Override
+	public int loginCheck(LoginInfoDTO loginInfoDTO) {
+		// TODO 自動生成されたメソッド・スタブ
+		return userMapper.loginCheck(loginInfoDTO);
+	}
+
 }
